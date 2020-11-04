@@ -1,0 +1,30 @@
+@startuml
+
+title __ENTITIES's Class Diagram__\n
+
+  class entities.Bomber {
+      + Bomber()
+      + update()
+  }
+  abstract class entities.Entity {
+      # img : Image
+      # x : int
+      # y : int
+      + Entity()
+      + render()
+      {abstract} + update()
+  }
+  class entities.Grass {
+      + Grass()
+      + update()
+  }
+  class entities.Wall {
+      + Wall()
+      + update()
+  }
+  
+  entities.Bomber -up-|> entities.Entity
+  entities.Grass -up-|> entities.Entity
+  entities.Wall -up-|> entities.Entity
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+
+title __BOMBERMAN's Class Diagram__\n
+
+class BombermanGame {
+}
+class entities.Bomber {
+}
+abstract class entities.Entity {
+}
+class entities.Grass {
+}
+class entities.Wall {
+}
+class graphics.Sprite {
+}
+class graphics.SpriteSheet {
+}
+
+
+BombermanGame -up-|> javafx.application.Application
+entities.Bomber -up-|> entities.Entity
+entities.Grass -up-|>entities.Entity
+entities.Wall -up-|> entities.Entity
+graphics.Sprite o-- graphics.SpriteSheet : _sheet
+
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml
+
+title __GRAPHICS's Class Diagram__\n
+
+class graphics.Sprite {
+{static} + DEFAULT_SIZE : int
+{static} + SCALED_SIZE : int
++ SIZE : int
++ _pixels : int[]
+# _realHeight : int
+# _realWidth : int
+{static} - TRANSPARENT_COLOR : int
+- _x : int
+- _y : int
++ Sprite()
++ Sprite()
++ getFxImage()
++ getPixel()
++ getSize()
+{static} + movingSprite()
+{static} + movingSprite()
+- load()
+- resample()
+- setColor()
+}
+
+class graphics.SpriteSheet {
++ SIZE : int
++ _pixels : int[]
++ image : BufferedImage
+{static} + tiles : SpriteSheet
+- _path : String
++ SpriteSheet()
+- load()
+}
+
+
+graphics.Sprite o-- graphics.SpriteSheet : _sheet
+
+@enduml
