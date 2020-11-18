@@ -5,11 +5,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class Bomber extends Entity {
 
-    public Bomber(int x, int y, Image img) {
-        super( x, y, img);
+    public Bomber(double x, double y) {
+        super( x, y, Sprite.player_right.getFxImage());
     }
 
     @Override
