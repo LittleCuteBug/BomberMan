@@ -8,6 +8,8 @@ title __ENTITIES's Class Diagram__\n
         # id : String
         + Entity(double x, double y, Image img)
         + render()
+        + getX()
+        + getY()
         {abstract} + update()
     }
 
@@ -97,7 +99,13 @@ title __ENTITIES's Class Diagram__\n
     Flame -up-|> Entity
     class Flame {
         - direction: int
-        + Flame(int x, int y, direction)
+        + Flame(int x, int y, int direction)
+        + Update()
+    }
+
+    Portar -up-|> Entity
+    class Portar {
+        + Portar(int x, int y)
         + Update()
     }
 @enduml
