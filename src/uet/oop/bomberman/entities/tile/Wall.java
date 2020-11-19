@@ -6,7 +6,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Wall extends Entity {
 
-    public Wall(double x, double y) {
+    public Wall(int x, int y) {
         super(x, y, Sprite.wall.getFxImage());
     }
 

@@ -12,7 +12,7 @@ public abstract class Entity {
     protected double y;
     protected Image img;
 
-    public Entity( double x, double y, Image img) {
+    public Entity(double x, double y, Image img) {
         this.x = x;
         this.y = y;
         this.img = img;
@@ -27,5 +27,6 @@ public abstract class Entity {
 
         gc.drawImage(base, x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
     }
+
     public abstract void update();
 }
