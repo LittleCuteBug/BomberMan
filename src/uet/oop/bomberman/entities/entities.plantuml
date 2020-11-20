@@ -13,12 +13,6 @@ title __ENTITIES's Class Diagram__\n
         {abstract} + update()
     }
 
-    Grass -up-|> Entity
-    class Grass {
-        + Grass(int x, int y)
-        + update()
-    }
-
     Wall -up-|> Entity
     class Wall {
         + Wall(int x, int y)
