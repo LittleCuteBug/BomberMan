@@ -9,7 +9,6 @@ import uet.oop.bomberman.entities.movingObject.Balloom;
 import uet.oop.bomberman.entities.movingObject.Bomber;
 import uet.oop.bomberman.entities.movingObject.Oneal;
 import uet.oop.bomberman.entities.tile.Brick;
-import uet.oop.bomberman.entities.tile.Grass;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
 
@@ -28,7 +27,6 @@ public class Game {
     private List<Entity> item = new ArrayList<>();
     private List<Entity> wall = new ArrayList<>();
     private List<Entity> brick = new ArrayList<>();
-    private List<Entity> glass = new ArrayList<>();
     private Bomber bomber;
     private Portal portal;
 
@@ -48,10 +46,6 @@ public class Game {
                     object = new Wall(i, j);
                     wall.add(object);
                 }
-                else {
-                    object = new Grass(i, j);
-                    glass.add(object);
-                }
             }
         }
         bomber = new Bomber(1,1);
@@ -63,7 +57,6 @@ public class Game {
         item.clear();
         wall.clear();
         brick.clear();
-        glass.clear();
         try {
             Scanner reader = new Scanner(new File(filePath));
             level = reader.nextInt();
@@ -106,7 +99,6 @@ public class Game {
                             item.add(new SpeedItem(i,j));
                             break;
                     }
-                    glass.add(new Grass(i,j));
                 }
             }
         } catch (Exception e) {
@@ -115,7 +107,6 @@ public class Game {
     }
 
     public void update() {
-        //glass.forEach(Entity::update);
         //wall.forEach(Entity::update);
         brick.forEach(Entity::update);
         item.forEach(Entity::update);
@@ -125,7 +116,6 @@ public class Game {
     }
 
     public void render(GraphicsContext gc) {
-        glass.forEach(g -> g.render(gc));
         wall.forEach(g -> g.render(gc));
         brick.forEach(g -> g.render(gc));
         item.forEach(g -> g.render(gc));
