@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.input.Keyboard;
 
 public class BombermanGame extends Application {
 
@@ -35,6 +36,13 @@ public class BombermanGame extends Application {
 
         // Tao scene
         Scene scene = new Scene(root);
+
+        scene.setOnKeyPressed(
+                event -> Keyboard.keyPressed(event)
+        );
+        scene.setOnKeyReleased(
+                event -> Keyboard.keyReleased(event)
+        );
 
         // Them scene vao stage
         stage.setScene(scene);
