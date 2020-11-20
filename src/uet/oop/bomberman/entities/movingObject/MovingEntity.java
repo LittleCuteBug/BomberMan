@@ -13,7 +13,7 @@ public abstract class MovingEntity extends Entity {
     protected int bombLength;
     protected Game game;
 
-    protected MovingEntity(double x, double y, Image img, double speed, int bombMax, int bombCnt, int bombLength) {
+    protected MovingEntity(double x, double y, Image img, double speed, int bombMax, int bombCnt, int bombLength, Game game) {
         super(x, y, img);
         this.speed = speed;
         this.bombMax = bombMax;
@@ -24,6 +24,16 @@ public abstract class MovingEntity extends Entity {
 
     protected boolean canMoveUp() {
         for (Entity entity : game.getEnemy()) {
+            if (touchCheck(x, y, entity) == true) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (touchCheck(x, y, entity) == true) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getWall()) {
             if (touchCheck(x, y, entity) == true) {
                 return false;
             }
