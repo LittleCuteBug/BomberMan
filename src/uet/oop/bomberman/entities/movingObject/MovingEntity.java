@@ -1,13 +1,17 @@
 package uet.oop.bomberman.entities.movingObject;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
+
+import static uet.oop.bomberman.entities.Check.touchCheck;
 
 public abstract class MovingEntity extends Entity {
     protected double speed;
     protected int bombMax;
     protected int bombCnt;
     protected int bombLength;
+    protected Game game;
 
     protected MovingEntity(double x, double y, Image img, double speed, int bombMax, int bombCnt, int bombLength) {
         super(x, y, img);
@@ -15,15 +19,53 @@ public abstract class MovingEntity extends Entity {
         this.bombMax = bombMax;
         this.bombCnt = bombCnt;
         this.bombLength = bombLength;
+        this.game = game;
     }
 
-    protected void moveUp() {}
+    protected boolean canMoveUp() {
+        for (Entity entity : game.getEnemy()) {
+            if (touchCheck(x, y, entity) == true) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-    protected void moveDown() {}
+    protected boolean canMoveDown() {
+        return true;
+    }
 
-    protected void moveLeft() {}
+    protected boolean canMoveLeft() {
+        return true;
+    }
 
-    protected void moveRight() {}
+    protected boolean canMoveRight() {
+        return true;
+    }
+
+    protected void moveUp() {
+        if (canMoveUp() == true) {
+            x += speed;
+        }
+    }
+
+    protected void moveDown() {
+        if (canMoveDown() == true) {
+            x -= speed;
+        }
+    }
+
+    protected void moveLeft() {
+        if (canMoveLeft() == true) {
+            y -= speed;
+        }
+    }
+
+    protected void moveRight() {
+        if (canMoveRight() == true) {
+            y += speed;
+        }
+    }
 
     protected void placeBomb() {}
 }

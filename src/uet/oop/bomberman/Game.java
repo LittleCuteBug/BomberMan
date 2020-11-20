@@ -40,6 +40,34 @@ public class Game {
         return WIDTH;
     }
 
+    public List<Entity> getEnemy() {
+        return enemy;
+    }
+
+    public List<Entity> getItem() {
+        return item;
+    }
+
+    public List<Entity> getWall() {
+        return wall;
+    }
+
+    public List<Entity> getBrick() {
+        return brick;
+    }
+
+    public List<Entity> getGlass() {
+        return glass;
+    }
+
+    public Bomber getBomber() {
+        return bomber;
+    }
+
+    public Portal getPortal() {
+        return portal;
+    }
+
     public void createMap() {
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
