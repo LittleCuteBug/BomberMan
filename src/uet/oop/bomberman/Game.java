@@ -54,10 +54,6 @@ public class Game {
         return brick;
     }
 
-    public List<Entity> getGlass() {
-        return glass;
-    }
-
     public Bomber getBomber() {
         return bomber;
     }
@@ -76,7 +72,7 @@ public class Game {
                 }
             }
         }
-        bomber = new Bomber(1,1);
+        bomber = new Bomber(1,1,this);
         portal = new Portal(WIDTH-2,HEIGHT-2);
     }
 
@@ -109,13 +105,13 @@ public class Game {
                             portal = new Portal(i,j);
                             break;
                         case 'p':
-                            bomber = new Bomber(i,j);
+                            bomber = new Bomber(i,j,this);
                             break;
                         case '1':
-                            enemy.add(new Balloom(i,j));
+                            enemy.add(new Balloom(i,j,this));
                             break;
                         case '2':
-                            enemy.add(new Oneal(i,j));
+                            enemy.add(new Oneal(i,j,this));
                             break;
                         case 'b':
                             item.add(new BombItem(i,j));

@@ -13,7 +13,7 @@ public abstract class MovingEntity extends Entity {
     protected int bombLength;
     protected Game game;
 
-    protected MovingEntity(double x, double y, Image img, double speed, int bombMax, int bombCnt, int bombLength, Game game) {
+    protected MovingEntity(double x, double y, Game game, Image img, double speed, int bombMax, int bombCnt, int bombLength) {
         super(x, y, img);
         this.speed = speed;
         this.bombMax = bombMax;
@@ -23,18 +23,13 @@ public abstract class MovingEntity extends Entity {
     }
 
     protected boolean canMoveUp() {
-        for (Entity entity : game.getEnemy()) {
-            if (touchCheck(x, y, entity) == true) {
-                return false;
-            }
-        }
         for (Entity entity : game.getBrick()) {
-            if (touchCheck(x, y, entity) == true) {
+            if (touchCheck(x, y, entity)) {
                 return false;
             }
         }
         for (Entity entity : game.getWall()) {
-            if (touchCheck(x, y, entity) == true) {
+            if (touchCheck(x, y, entity)) {
                 return false;
             }
         }
@@ -54,25 +49,25 @@ public abstract class MovingEntity extends Entity {
     }
 
     protected void moveUp() {
-        if (canMoveUp() == true) {
+        if (canMoveUp()) {
             x += speed;
         }
     }
 
     protected void moveDown() {
-        if (canMoveDown() == true) {
+        if (canMoveDown()) {
             x -= speed;
         }
     }
 
     protected void moveLeft() {
-        if (canMoveLeft() == true) {
+        if (canMoveLeft()) {
             y -= speed;
         }
     }
 
     protected void moveRight() {
-        if (canMoveRight() == true) {
+        if (canMoveRight()) {
             y += speed;
         }
     }

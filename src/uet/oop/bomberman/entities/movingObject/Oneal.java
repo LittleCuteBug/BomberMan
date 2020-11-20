@@ -1,11 +1,11 @@
 package uet.oop.bomberman.entities.movingObject;
 
-import javafx.scene.image.Image;
+import uet.oop.bomberman.Game;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Oneal extends MovingEntity {
-    public Oneal(double x, double y) {
-        super(x, y, Sprite.oneal_right1.getFxImage(), 0.5, 0, 0, 0);
+    public Oneal(double x, double y, Game game) {
+        super(x, y, game, Sprite.oneal_right1.getFxImage(), 0.5, 0, 0, 0);
     }
 
     public void update() {
