@@ -24,12 +24,12 @@ public abstract class MovingEntity extends Entity {
 
     protected boolean canMoveUp() {
         for (Entity entity : game.getBrick()) {
-            if (touchCheck(x, y, entity)) {
+            if (touchCheck(x, y-speed, entity)) {
                 return false;
             }
         }
         for (Entity entity : game.getWall()) {
-            if (touchCheck(x, y, entity)) {
+            if (touchCheck(x, y-speed, entity)) {
                 return false;
             }
         }
@@ -37,38 +37,68 @@ public abstract class MovingEntity extends Entity {
     }
 
     protected boolean canMoveDown() {
+        for (Entity entity : game.getBrick()) {
+            if (touchCheck(x, y+speed, entity)) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getWall()) {
+            if (touchCheck(x, y+speed, entity)) {
+                return false;
+            }
+        }
         return true;
     }
 
     protected boolean canMoveLeft() {
+        for (Entity entity : game.getBrick()) {
+            if (touchCheck(x-speed, y, entity)) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getWall()) {
+            if (touchCheck(x-speed, y, entity)) {
+                return false;
+            }
+        }
         return true;
     }
 
     protected boolean canMoveRight() {
+        for (Entity entity : game.getBrick()) {
+            if (touchCheck(x+speed, y, entity)) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getWall()) {
+            if (touchCheck(x+speed, y, entity)) {
+                return false;
+            }
+        }
         return true;
     }
 
     protected void moveUp() {
         if (canMoveUp()) {
-            x += speed;
+            y -= speed;
         }
     }
 
     protected void moveDown() {
         if (canMoveDown()) {
-            x -= speed;
+            y += speed;
         }
     }
 
     protected void moveLeft() {
         if (canMoveLeft()) {
-            y -= speed;
+            x -= speed;
         }
     }
 
     protected void moveRight() {
         if (canMoveRight()) {
-            y += speed;
+            x += speed;
         }
     }
 

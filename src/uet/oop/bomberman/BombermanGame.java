@@ -37,12 +37,8 @@ public class BombermanGame extends Application {
         // Tao scene
         Scene scene = new Scene(root);
 
-        scene.setOnKeyPressed(
-                event -> Keyboard.keyPressed(event)
-        );
-        scene.setOnKeyReleased(
-                event -> Keyboard.keyReleased(event)
-        );
+        scene.setOnKeyPressed(Keyboard::keyPressed);
+        scene.setOnKeyReleased(Keyboard::keyReleased);
 
         // Them scene vao stage
         stage.setScene(scene);
@@ -56,7 +52,6 @@ public class BombermanGame extends Application {
                 gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 game.render(gc);
                 game.update();
-                System.out.println("ok");
             }
         };
         timer.start();

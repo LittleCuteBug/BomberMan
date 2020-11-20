@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities.movingObject;
 
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.input.Keyboard;
 
 public class Bomber extends MovingEntity {
     private int life;
@@ -15,6 +16,13 @@ public class Bomber extends MovingEntity {
 
     @Override
     public void update() {
-
+        if(Keyboard.up)
+            super.moveUp();
+        if(Keyboard.down)
+            super.moveDown();
+        if(Keyboard.left)
+            super.moveLeft();
+        if(Keyboard.right)
+            super.moveRight();
     }
 }
