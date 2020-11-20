@@ -14,8 +14,7 @@ public class Bomber extends MovingEntity {
     }
     // Khai báo này có vẻ không ổn lắm.
 
-    @Override
-    public void update() {
+    private void updateAction(){
         if(Keyboard.up)
             super.moveUp();
         if(Keyboard.down)
@@ -24,5 +23,73 @@ public class Bomber extends MovingEntity {
             super.moveLeft();
         if(Keyboard.right)
             super.moveRight();
+        if(Keyboard.space)
+            super.placeBomb();
+    }
+
+    private void updateImage(){
+        imgStage = imgStage%3;
+        switch (direction){
+            case UP:
+                switch (imgStage)
+                {
+                    case 0:
+                        img = Sprite.player_up.getFxImage();
+                        break;
+                    case 1:
+                        img = Sprite.player_up_1.getFxImage();
+                        break;
+                    case 2:
+                        img = Sprite.player_up_2.getFxImage();
+                        break;
+                }
+                break;
+            case DOWN:
+                switch (imgStage)
+                {
+                    case 0:
+                        img = Sprite.player_down.getFxImage();
+                        break;
+                    case 1:
+                        img = Sprite.player_down_1.getFxImage();
+                        break;
+                    case 2:
+                        img = Sprite.player_down_2.getFxImage();
+                        break;
+                }
+                break;
+            case LEFT:
+                switch (imgStage){
+                    case 0:
+                        img = Sprite.player_left.getFxImage();
+                        break;
+                    case 1:
+                        img = Sprite.player_left_1.getFxImage();
+                        break;
+                    case 2:
+                        img = Sprite.player_left_2.getFxImage();
+                        break;
+                }
+                break;
+            case RIGHT:
+                switch (imgStage){
+                    case 0:
+                        img = Sprite.player_right.getFxImage();
+                        break;
+                    case 1:
+                        img = Sprite.player_right_1.getFxImage();
+                        break;
+                    case 2:
+                        img = Sprite.player_right_2.getFxImage();
+                        break;
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void update() {
+        updateAction();
+        updateImage();
     }
 }

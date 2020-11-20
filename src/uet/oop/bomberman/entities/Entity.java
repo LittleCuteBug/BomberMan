@@ -11,6 +11,7 @@ public abstract class Entity {
     protected double x;
     protected double y;
     protected Image img;
+    protected int imgStage = 0;
 
     public Entity(double x, double y, Image img) {
         this.x = x;

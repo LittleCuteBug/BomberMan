@@ -8,6 +8,7 @@ import static uet.oop.bomberman.entities.Check.touchCheck;
 
 public abstract class MovingEntity extends Entity {
     protected double speed;
+    protected Direction direction = Direction.RIGHT;
     protected int bombMax;
     protected int bombCnt;
     protected int bombLength;
@@ -81,24 +82,50 @@ public abstract class MovingEntity extends Entity {
     protected void moveUp() {
         if (canMoveUp()) {
             y -= speed;
+            if(direction == Direction.UP) {
+                imgStage++;
+            } else {
+                direction = Direction.UP;
+                imgStage = 0;
+            }
         }
     }
 
     protected void moveDown() {
         if (canMoveDown()) {
             y += speed;
+            if(direction == Direction.DOWN){
+                imgStage++;
+            }else{
+                direction = Direction.DOWN;
+                imgStage = 0;
+            }
+
         }
     }
 
     protected void moveLeft() {
         if (canMoveLeft()) {
             x -= speed;
+            if(direction == Direction.LEFT)
+            {
+                imgStage++;
+            } else {
+                direction = Direction.LEFT;
+                imgStage = 0;
+            }
         }
     }
 
     protected void moveRight() {
         if (canMoveRight()) {
             x += speed;
+            if(direction == Direction.RIGHT) {
+                imgStage++;
+            } else {
+                direction = Direction.RIGHT;
+                imgStage = 0;
+            }
         }
     }
 

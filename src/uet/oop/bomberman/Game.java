@@ -90,7 +90,7 @@ public class Game {
             for(int j=0;j<HEIGHT;j++)
             {
                 String line = reader.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
                 for(int i = 0;i<WIDTH;i++)
                 {
                     char c = line.charAt(i);
