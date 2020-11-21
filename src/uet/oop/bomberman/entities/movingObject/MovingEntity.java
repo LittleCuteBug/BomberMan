@@ -41,9 +41,11 @@ public abstract class MovingEntity extends Entity {
                 }
             }
         }
-        for (Entity entity: game.getBomb()){
-            if (touchCheck(_x, _y, entity)) {
-                return false;
+        for (Bomb bomb: game.getBomb()){
+            if(bomb.isByPass()||bomb.getOwner()!=this) {
+                if (touchCheck(_x, _y, bomb)) {
+                    return false;
+                }
             }
         }
         for (Entity entity : game.getBrick()) {
@@ -137,11 +139,6 @@ public abstract class MovingEntity extends Entity {
     {
         if (bombCnt >= bombMax || lastTimePlaceBomb + timeBetweenPlaceBomb > System.currentTimeMillis())
             return false;
-        for (Entity entity : game.getTempBomb() ) {
-            if (touchCheck(_x, _y, entity)) {
-                return false;
-            }
-        }
         for (Entity entity : game.getBomb() ) {
             if (touchCheck(_x, _y, entity)) {
                 return false;
@@ -152,7 +149,7 @@ public abstract class MovingEntity extends Entity {
     protected void placeBomb() {
         if (canPlaceBomb(Math.round(x), Math.round(y))) {
             lastTimePlaceBomb = System.currentTimeMillis();
-            game.getTempBomb().add(new Bomb((int) Math.round(x), (int) Math.round(y), this,this.game));
+            game.getBomb().add(new Bomb((int) Math.round(x), (int) Math.round(y), this,this.game));
         }
     }
 

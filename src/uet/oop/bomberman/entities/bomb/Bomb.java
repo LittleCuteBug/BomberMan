@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.bomb;
 
 import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.graphics.Sprite;
@@ -11,6 +12,7 @@ public class Bomb extends Entity {
     private Game game;
     private int bombLength;
     private MovingEntity owner;
+    private boolean byPass = false;
 
     public Bomb(int x, int y, MovingEntity owner, Game game) {
         super(x, y, Sprite.bomb.getFxImage());
@@ -30,7 +32,18 @@ public class Bomb extends Entity {
             isRemoved = true;
         }
     }
+
+    public boolean isByPass() {
+        return byPass;
+    }
+
+    public MovingEntity getOwner() {
+        return owner;
+    }
+
     public void update() {
+        if (!Check.touchCheck(x,y,owner))
+            byPass = true;
         updateImage();
         if(!isRemoved)
             explore();
