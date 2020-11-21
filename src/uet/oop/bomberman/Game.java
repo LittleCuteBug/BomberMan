@@ -27,6 +27,9 @@ public class Game {
     private List<Entity> item = new ArrayList<>();
     private List<Entity> wall = new ArrayList<>();
     private List<Entity> brick = new ArrayList<>();
+    private List<Entity> bomb = new ArrayList<>();
+    private List<Entity> flame = new ArrayList<>();
+    
     private Bomber bomber;
     private Portal portal;
 
