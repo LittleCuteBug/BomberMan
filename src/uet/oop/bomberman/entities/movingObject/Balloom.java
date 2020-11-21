@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Balloom extends MovingEntity {
     public Balloom(double x, double y, Game game) {
-        super(x, y, game, Sprite.balloom_right1.getFxImage(), 0.5, 0, 0,0);
+        super(x, y, game, Sprite.balloom_right1.getFxImage(), 50, 0, 0,0);
     }
 
     public void update() {

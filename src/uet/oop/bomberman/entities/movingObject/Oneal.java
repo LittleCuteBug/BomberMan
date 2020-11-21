@@ -5,7 +5,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Oneal extends MovingEntity {
     public Oneal(double x, double y, Game game) {
-        super(x, y, game, Sprite.oneal_right1.getFxImage(), 0.5, 0, 0, 0);
+        super(x, y, game, Sprite.oneal_right1.getFxImage(), 5, 0, 0, 0);
     }
 
     public void update() {
