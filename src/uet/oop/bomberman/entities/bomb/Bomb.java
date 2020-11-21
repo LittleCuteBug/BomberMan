@@ -29,11 +29,11 @@ public class Bomb extends Entity {
     private void explore(){
         if (placeTime + timeCountDown < System.currentTimeMillis()) {
             owner.decreaseBombCnt();
-            game.getFlame().add(new Flame((int) x, (int) y, 0));
-            game.getFlame().add(new Flame((int) x + 1, (int) y, 2));
-            game.getFlame().add(new Flame((int) x - 1, (int) y, 1));
-            game.getFlame().add(new Flame((int) x, (int) y + 1, 4));
-            game.getFlame().add(new Flame((int) x, (int) y - 1, 3));
+            game.getFlame().add(new Flame((int) x, (int) y, Direction.CENTER));
+            game.getFlame().add(new Flame((int) x + 1, (int) y, Direction.RIGHT));
+            game.getFlame().add(new Flame((int) x - 1, (int) y, Direction.LEFT));
+            game.getFlame().add(new Flame((int) x, (int) y + 1, Direction.UP));
+            game.getFlame().add(new Flame((int) x, (int) y - 1, Direction.DOWN));
             isRemoved = true;
         }
     }
