@@ -1,19 +1,21 @@
 package uet.oop.bomberman.entities.movingObject;
 
+import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
 public class Bomber extends MovingEntity {
     private int life;
-    // Đoạn này t nghĩ là phải thêm sẵn mấy cái thuộc tính luôn, vd speed = 2.0 gì đấy.
-    // Đọc ở đoạn chạy Game thì vẫn để Bomber(1.5, 2)
+    private static final Image[] spriteUp = {Sprite.player_up.getFxImage(),Sprite.player_up_1.getFxImage(),Sprite.player_up_2.getFxImage()};
+    private static final Image[] spriteDown = {Sprite.player_down.getFxImage(),Sprite.player_down_1.getFxImage(),Sprite.player_down_2.getFxImage()};
+    private static final Image[] spriteLeft = {Sprite.player_left.getFxImage(),Sprite.player_left_1.getFxImage(),Sprite.player_left_2.getFxImage()};
+    private static final Image[] spriteRight = {Sprite.player_right.getFxImage(),Sprite.player_right_1.getFxImage(),Sprite.player_right_2.getFxImage()};
 
     public Bomber(double x, double y, Game game) {
-        super(x, y, game, Sprite.player_right.getFxImage(), 0.5, 1, 0, 1);
+        super(x, y, game, Bomber.spriteRight[0], 100, 5, 0, 1);
     }
-    // Khai báo này có vẻ không ổn lắm.
-
     private void updateAction(){
         if(Keyboard.up)
             super.moveUp();
@@ -26,67 +28,23 @@ public class Bomber extends MovingEntity {
         if(Keyboard.space)
             super.placeBomb();
     }
-
     private void updateImage(){
         imgStage = imgStage % 3;
         switch (direction){
             case UP:
-                switch (imgStage)
-                {
-                    case 0:
-                        img = Sprite.player_up.getFxImage();
-                        break;
-                    case 1:
-                        img = Sprite.player_up_1.getFxImage();
-                        break;
-                    case 2:
-                        img = Sprite.player_up_2.getFxImage();
-                        break;
-                }
+                img = Bomber.spriteUp[imgStage];
                 break;
             case DOWN:
-                switch (imgStage)
-                {
-                    case 0:
-                        img = Sprite.player_down.getFxImage();
-                        break;
-                    case 1:
-                        img = Sprite.player_down_1.getFxImage();
-                        break;
-                    case 2:
-                        img = Sprite.player_down_2.getFxImage();
-                        break;
-                }
+                img = Bomber.spriteDown[imgStage];
                 break;
             case LEFT:
-                switch (imgStage){
-                    case 0:
-                        img = Sprite.player_left.getFxImage();
-                        break;
-                    case 1:
-                        img = Sprite.player_left_1.getFxImage();
-                        break;
-                    case 2:
-                        img = Sprite.player_left_2.getFxImage();
-                        break;
-                }
+                img = Bomber.spriteLeft[imgStage];
                 break;
             case RIGHT:
-                switch (imgStage){
-                    case 0:
-                        img = Sprite.player_right.getFxImage();
-                        break;
-                    case 1:
-                        img = Sprite.player_right_1.getFxImage();
-                        break;
-                    case 2:
-                        img = Sprite.player_right_2.getFxImage();
-                        break;
-                }
+                img = Bomber.spriteRight[imgStage];
                 break;
         }
     }
-
     @Override
     public void update() {
         updateAction();

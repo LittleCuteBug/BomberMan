@@ -2,11 +2,15 @@ package uet.oop.bomberman;
 
 import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.bomb.Bomb;
+import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.item.BombItem;
 import uet.oop.bomberman.entities.item.FlameItem;
+import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.entities.movingObject.Balloom;
 import uet.oop.bomberman.entities.movingObject.Bomber;
+import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.movingObject.Oneal;
 import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.Portal;
@@ -23,10 +27,13 @@ public class Game {
     private int HEIGHT = 13;
     private int level;
 
-    private List<Entity> enemy = new ArrayList<>();
-    private List<Entity> item = new ArrayList<>();
+    private List<MovingEntity> enemy = new ArrayList<>();
+    private List<Item> item = new ArrayList<>();
     private List<Entity> wall = new ArrayList<>();
     private List<Entity> brick = new ArrayList<>();
+    private List<Bomb> bomb = new ArrayList<>();
+    private List<Flame> flame = new ArrayList<>();
+    
     private Bomber bomber;
     private Portal portal;
 
@@ -38,11 +45,11 @@ public class Game {
         return WIDTH;
     }
 
-    public List<Entity> getEnemy() {
+    public List<MovingEntity> getEnemy() {
         return enemy;
     }
 
-    public List<Entity> getItem() {
+    public List<Item> getItem() {
         return item;
     }
 
@@ -52,6 +59,14 @@ public class Game {
 
     public List<Entity> getBrick() {
         return brick;
+    }
+
+    public List<Bomb> getBomb() {
+        return bomb;
+    }
+
+    public List<Flame> getFlame() {
+        return flame;
     }
 
     public Bomber getBomber() {
@@ -129,6 +144,9 @@ public class Game {
             e.printStackTrace();
         }
     }
+    private void remove(){
+        bomb.removeIf(entity -> entity.isRemoved);
+    }
 
     public void update() {
         //wall.forEach(Entity::update);
@@ -137,6 +155,9 @@ public class Game {
         portal.update();
         bomber.update();
         enemy.forEach(Entity::update);
+        bomb.forEach(Entity::update);
+        flame.forEach(Entity::update);
+        remove();
     }
 
     public void render(GraphicsContext gc) {
@@ -144,6 +165,8 @@ public class Game {
         brick.forEach(g -> g.render(gc));
         item.forEach(g -> g.render(gc));
         portal.render(gc);
+        flame.forEach(g -> g.render(gc));
+        bomb.forEach(g->g.render(gc));
         bomber.render(gc);
         enemy.forEach(g -> g.render(gc));
     }

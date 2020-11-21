@@ -7,7 +7,7 @@ public class Flame extends Entity {
     private int direction;
 
     public Flame(int x, int y, int direction) {
-        super(x, y, Sprite.explosion_horizontal.getFxImage());
+        super(x, y, Sprite.bomb_exploded.getFxImage());
         this.direction = direction;
     }
 
