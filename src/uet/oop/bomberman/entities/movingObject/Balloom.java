@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Balloom extends MovingEntity {
     public Balloom(double x, double y, Game game) {
-        super(x, y, game, Sprite.balloom_right1.getFxImage(), 0.3, 0, 0,0);
+        super(x, y, game, Sprite.balloom_right1.getFxImage(), 0.5, 0, 0,0);
     }
 
     public void update() {
@@ -22,48 +22,21 @@ public class Balloom extends MovingEntity {
         int rand = generator.nextInt(4) + 1;
         switch (rand) {
             case 1:
-                if (canMoveUp()) {
+                if(!canMoveDown()||direction!=Direction.DOWN)
                     moveUp();
-                } /*else if (canMoveDown()) {
-                    moveDown();
-                } else if (canMoveLeft()) {
-                    moveLeft();
-                } else if (canMoveRight()) {
-                    moveRight();
-                }*/
+                break;
             case 2:
-                if (canMoveDown()) {
+                if(!canMoveUp()||direction!=Direction.UP)
                     moveDown();
-                } /*else if (canMoveLeft()) {
-                    moveLeft();
-                } else if (canMoveRight()) {
-                    moveRight();
-                } else if (canMoveUp()) {
-                    moveUp();
-                }*/
+                break;
             case 3:
-                if (canMoveLeft()) {
+                if(!canMoveRight()||direction!=Direction.RIGHT)
                     moveLeft();
-                } else {
-                    rand = generator.nextInt(4) + 1;
-                }
-                /*else if (canMoveRight()) {
-                    moveRight();
-                } else if (canMoveUp()) {
-                    moveUp();
-                } else if (canMoveDown()) {
-                    moveDown();
-                }*/
+                break;
             case 4:
-                if (canMoveRight()) {
+                if(!canMoveLeft()||direction!=Direction.LEFT)
                     moveRight();
-                } /*else if (canMoveUp()) {
-                    moveUp();
-                } else if (canMoveDown()) {
-                    moveDown();
-                } else if (canMoveLeft()) {
-                    moveLeft();
-                }*/
+                break;
         }
     }
 
