@@ -1,15 +1,18 @@
 package uet.oop.bomberman.entities.bomb;
 
+import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.movingObject.Balloom;
 import uet.oop.bomberman.entities.movingObject.Direction;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Bomb extends Entity {
+    private static final Image[] spriteBomb = {Sprite.bomb.getFxImage(), Sprite.bomb_1.getFxImage(), Sprite.bomb_2.getFxImage()};
     private long placeTime;
-    private static final long timeCountDown = 5000;
+    private static final long timeCountDown = 1000;
     private Game game;
     private int bombLength;
     private MovingEntity owner;
@@ -24,8 +27,20 @@ public class Bomb extends Entity {
         owner.increaseBombCnt();
     }
     private void updateImage(){
-
+        imgStage = imgStage % 3;
+        switch (imgStage){
+            case 1:
+                img = Bomb.spriteBomb[imgStage];
+                break;
+            case 2:
+                img = Bomb.spriteBomb[imgStage];
+                break;
+            case 3:
+                img = Bomb.spriteBomb[imgStage];
+                break;
+        }
     }
+
     private void explore(){
         if (placeTime + timeCountDown < System.currentTimeMillis()) {
             owner.decreaseBombCnt();

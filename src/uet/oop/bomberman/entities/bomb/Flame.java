@@ -11,12 +11,15 @@ public class Flame extends Entity {
     private static final Image[] spriteLeft = {Sprite.explosion_horizontal_left_last.getFxImage(), Sprite.explosion_horizontal_left_last1.getFxImage(),
             Sprite.explosion_horizontal_left_last2.getFxImage(), Sprite.explosion_horizontal_left_last1.getFxImage(),
             Sprite.explosion_horizontal_left_last.getFxImage()};
+
     private static final Image[] spriteRight = {Sprite.explosion_horizontal_right_last.getFxImage(), Sprite.explosion_horizontal_right_last1.getFxImage(),
             Sprite.explosion_horizontal_right_last2.getFxImage(), Sprite.explosion_horizontal_right_last1.getFxImage(),
             Sprite.explosion_horizontal_right_last.getFxImage()};
+
     private static final Image[] spriteUp = {Sprite.explosion_vertical_top_last.getFxImage(), Sprite.explosion_vertical_top_last1.getFxImage(),
             Sprite.explosion_vertical_top_last2.getFxImage(), Sprite.explosion_vertical_top_last1.getFxImage(),
             Sprite.explosion_vertical_top_last.getFxImage()};
+
     private static final Image[] spriteDown = {Sprite.explosion_vertical_down_last.getFxImage(), Sprite.explosion_vertical_down_last1.getFxImage(),
             Sprite.explosion_vertical_down_last2.getFxImage(), Sprite.explosion_vertical_down_last1.getFxImage(),
             Sprite.explosion_vertical_down_last.getFxImage()};
@@ -30,16 +33,16 @@ public class Flame extends Entity {
         imgStage = imgStage % 5;
         switch (direction){
             case LEFT:
-                img = Flame.spriteLeft[0];
+                img = Flame.spriteLeft[imgStage];
                 break;
             case RIGHT:
-                img = Flame.spriteRight[1];
+                img = Flame.spriteRight[imgStage];
+                break;
+            case UP: //Bị ngược trục y????
+                img = Flame.spriteDown[imgStage];
                 break;
             case DOWN:
-                img = Flame.spriteDown[2];
-                break;
-            case UP:
-                img = Flame.spriteUp[3];
+                img = Flame.spriteUp[imgStage];
                 break;
         }
     }
