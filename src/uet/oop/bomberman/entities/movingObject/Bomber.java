@@ -28,7 +28,7 @@ public class Bomber extends MovingEntity {
     }
 
     private void updateImage(){
-        imgStage = imgStage%3;
+        imgStage = imgStage % 3;
         switch (direction){
             case UP:
                 switch (imgStage)

@@ -20,10 +20,12 @@ public class Balloom extends MovingEntity {
     private void updateAction(){
         Random generator = new Random();
         int rand = generator.nextInt(4) + 1;
+        System.out.println(rand);
         switch (rand) {
             case 1:
                 if (canMoveUp()) {
                     moveUp();
+                    System.out.println("done up");
                 } /*else if (canMoveDown()) {
                     moveDown();
                 } else if (canMoveLeft()) {
@@ -34,6 +36,7 @@ public class Balloom extends MovingEntity {
             case 2:
                 if (canMoveDown()) {
                     moveDown();
+                    System.out.println("done down");
                 } /*else if (canMoveLeft()) {
                     moveLeft();
                 } else if (canMoveRight()) {
@@ -44,8 +47,7 @@ public class Balloom extends MovingEntity {
             case 3:
                 if (canMoveLeft()) {
                     moveLeft();
-                } else {
-                    rand = generator.nextInt(4) + 1;
+                    System.out.println("done left");
                 }
                 /*else if (canMoveRight()) {
                     moveRight();
@@ -57,6 +59,7 @@ public class Balloom extends MovingEntity {
             case 4:
                 if (canMoveRight()) {
                     moveRight();
+                    System.out.println("done right");
                 } /*else if (canMoveUp()) {
                     moveUp();
                 } else if (canMoveDown()) {
@@ -68,15 +71,18 @@ public class Balloom extends MovingEntity {
     }
 
     private void updateImage(){
-        imgStage = imgStage%3;
-        switch (direction){
-            case UP:
+        imgStage = imgStage % 3;
+        Random generator = new Random();
+        int rand = generator.nextInt(4) + 1;
+        System.out.println("img " + rand);
+        switch (rand){
+            case 1:
                 img = Sprite.balloom_left1.getFxImage();
                 break;
-            case DOWN:
+            case 2:
                 img = Sprite.balloom_left1.getFxImage();
                 break;
-            case LEFT:
+            case 3:
                 switch (imgStage) {
                     case 0:
                         img = Sprite.balloom_left1.getFxImage();
@@ -89,7 +95,7 @@ public class Balloom extends MovingEntity {
                         break;
                 }
                 break;
-            case RIGHT:
+            case 4:
                 switch (imgStage){
                     case 0:
                         img = Sprite.balloom_right1.getFxImage();
