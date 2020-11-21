@@ -3,6 +3,7 @@ package uet.oop.bomberman.entities.bomb;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.movingObject.Direction;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -19,7 +20,7 @@ public class Bomb extends Entity {
         this.placeTime = System.currentTimeMillis();
         this.owner = owner;
         this.game = game;
-        this.bombLength = 2;
+        this.bombLength = owner.getBombLength();
         owner.increaseBombCnt();
     }
     private void updateImage(){
@@ -29,6 +30,10 @@ public class Bomb extends Entity {
         if (placeTime + timeCountDown < System.currentTimeMillis()) {
             owner.decreaseBombCnt();
             game.getFlame().add(new Flame((int) x, (int) y, 0));
+            game.getFlame().add(new Flame((int) x + 1, (int) y, 2));
+            game.getFlame().add(new Flame((int) x - 1, (int) y, 1));
+            game.getFlame().add(new Flame((int) x, (int) y + 1, 4));
+            game.getFlame().add(new Flame((int) x, (int) y - 1, 3));
             isRemoved = true;
         }
     }

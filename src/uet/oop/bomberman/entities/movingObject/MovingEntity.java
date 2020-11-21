@@ -60,6 +60,11 @@ public abstract class MovingEntity extends Entity {
         }
         return true;
     }
+
+    public int getBombLength() {
+        return bombLength;
+    }
+
     protected boolean canMoveUp() {
         return canMove(x,y-speed);
     }
