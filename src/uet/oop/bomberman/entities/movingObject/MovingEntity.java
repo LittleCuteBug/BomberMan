@@ -3,12 +3,15 @@ package uet.oop.bomberman.entities.movingObject;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.bomb.Bomb;
 
 import static uet.oop.bomberman.entities.Check.touchCheck;
 
 public abstract class MovingEntity extends Entity {
     protected long timeBetweenMove;
     protected long lastTimeMove;
+    protected long timeBetweenPlaceBomb = 300;
+    protected long lastTimePlaceBomb;
     protected final double speed = 0.5;
     protected Direction direction = Direction.RIGHT;
     protected int bombMax;
@@ -24,11 +27,24 @@ public abstract class MovingEntity extends Entity {
         this.bombLength = bombLength;
         this.game = game;
         this.lastTimeMove = System.currentTimeMillis();
+        this.lastTimePlaceBomb = System.currentTimeMillis();
     }
     protected boolean canMove(double _x, double _y)
     {
         if((lastTimeMove+timeBetweenMove)>System.currentTimeMillis()) {
             return false;
+        }
+        if(this instanceof Balloom|| this instanceof Oneal) {
+            for(Entity entity : game.getEnemy()) {
+                if (entity!=this && touchCheck(_x, _y, entity)) {
+                    return false;
+                }
+            }
+        }
+        for (Entity entity: game.getBomb()){
+            if (touchCheck(_x, _y, entity)) {
+                return false;
+            }
         }
         for (Entity entity : game.getBrick()) {
             if (touchCheck(_x, _y, entity)) {
@@ -111,6 +127,33 @@ public abstract class MovingEntity extends Entity {
             }
         }
     }
+    public void increaseBombCnt() {
+        bombCnt++;
+    }
+    public void decreaseBombCnt() {
+        bombCnt--;
+    }
+    protected boolean canPlaceBomb(double _x, double _y)
+    {
+        if (bombCnt >= bombMax || lastTimePlaceBomb + timeBetweenPlaceBomb > System.currentTimeMillis())
+            return false;
+        for (Entity entity : game.getTempBomb() ) {
+            if (touchCheck(_x, _y, entity)) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getBomb() ) {
+            if (touchCheck(_x, _y, entity)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    protected void placeBomb() {
+        if (canPlaceBomb(Math.round(x), Math.round(y))) {
+            lastTimePlaceBomb = System.currentTimeMillis();
+            game.getTempBomb().add(new Bomb((int) Math.round(x), (int) Math.round(y), this,this.game));
+        }
+    }
 
-    protected void placeBomb() {}
 }

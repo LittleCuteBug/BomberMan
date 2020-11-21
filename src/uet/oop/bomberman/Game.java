@@ -28,6 +28,7 @@ public class Game {
     private List<Entity> wall = new ArrayList<>();
     private List<Entity> brick = new ArrayList<>();
     private List<Entity> bomb = new ArrayList<>();
+    private List<Entity> tempBomb = new ArrayList<>();
     private List<Entity> flame = new ArrayList<>();
     
     private Bomber bomber;
@@ -55,6 +56,18 @@ public class Game {
 
     public List<Entity> getBrick() {
         return brick;
+    }
+
+    public List<Entity> getBomb() {
+        return bomb;
+    }
+
+    public List<Entity> getTempBomb() {
+        return tempBomb;
+    }
+
+    public List<Entity> getFlame() {
+        return flame;
     }
 
     public Bomber getBomber() {
@@ -132,6 +145,10 @@ public class Game {
             e.printStackTrace();
         }
     }
+    private void remove(){
+        bomb.removeIf(entity -> entity.isRemoved);
+        tempBomb.removeIf(entity -> entity.isRemoved);
+    }
 
     public void update() {
         //wall.forEach(Entity::update);
@@ -140,6 +157,10 @@ public class Game {
         portal.update();
         bomber.update();
         enemy.forEach(Entity::update);
+        tempBomb.forEach(Entity::update);
+        bomb.forEach(Entity::update);
+        flame.forEach(Entity::update);
+        remove();
     }
 
     public void render(GraphicsContext gc) {
@@ -147,6 +168,9 @@ public class Game {
         brick.forEach(g -> g.render(gc));
         item.forEach(g -> g.render(gc));
         portal.render(gc);
+        tempBomb.forEach(g->g.render(gc));
+        flame.forEach(g -> g.render(gc));
+        bomb.forEach(g->g.render(gc));
         bomber.render(gc);
         enemy.forEach(g -> g.render(gc));
     }

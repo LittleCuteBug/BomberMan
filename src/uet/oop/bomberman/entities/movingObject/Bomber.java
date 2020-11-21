@@ -14,7 +14,7 @@ public class Bomber extends MovingEntity {
     private static final Image[] spriteRight = {Sprite.player_right.getFxImage(),Sprite.player_right_1.getFxImage(),Sprite.player_right_2.getFxImage()};
 
     public Bomber(double x, double y, Game game) {
-        super(x, y, game, Bomber.spriteRight[0], 100, 1, 0, 1);
+        super(x, y, game, Bomber.spriteRight[0], 100, 5, 0, 1);
     }
     private void updateAction(){
         if(Keyboard.up)
