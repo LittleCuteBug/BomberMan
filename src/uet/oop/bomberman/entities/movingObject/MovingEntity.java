@@ -5,6 +5,7 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
+import uet.oop.bomberman.entities.bomb.Flame;
 
 import static uet.oop.bomberman.entities.Check.touchCheck;
 
@@ -40,6 +41,11 @@ public abstract class MovingEntity extends Entity {
                 if (entity!=this && touchCheck(_x, _y, entity)) {
                     return false;
                 }
+            }
+        }
+        for (Flame flame: game.getFlame()){
+            if (touchCheck(_x, _y, flame)) {
+                return false;
             }
         }
         for (Bomb bomb: game.getBomb()){

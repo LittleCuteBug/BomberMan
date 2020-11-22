@@ -81,10 +81,36 @@ public class Flame extends Entity {
             }
         }
     }
+
+    public void updateObject() {
+        for(Entity entity:game.getBrick()) {
+            if(!entity.isRemoved()) {
+                if(Check.touchCheck(x,y,entity)) {
+                    entity.remove();
+                }
+            }
+        }
+
+        for(Entity entity:game.getEnemy()) {
+            if(!entity.isRemoved()) {
+                if(Check.touchCheck(x,y,entity)) {
+                    entity.remove();
+                }
+            }
+        }
+
+        Entity entity = game.getBomber();
+        if(!entity.isRemoved()) {
+            if(Check.touchCheck(x,y,entity)) {
+                entity.remove();
+            }
+        }
+    }
     public void update() {
         updateImage();
         if(!isRemoved()){
             updateBomb();
+            updateObject();
             updateAction();
         }
 

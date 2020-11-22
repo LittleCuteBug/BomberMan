@@ -147,6 +147,10 @@ public class Game {
     private void remove(){
         bomb.removeIf(entity -> entity.isRemoved());
         flame.removeIf(entity -> entity.isRemoved());
+        brick.removeIf(entity -> entity.isRemoved());
+        enemy.removeIf(entity -> entity.isRemoved());
+        if(bomber.isRemoved())
+            bomber.reborn();
     }
 
     public void update() {

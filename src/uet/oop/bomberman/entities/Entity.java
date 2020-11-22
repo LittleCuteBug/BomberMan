@@ -48,4 +48,5 @@ public abstract class Entity {
     public void remove() {
         Removed = true;
     }
+    public void reborn() { Removed = false; }
 }
