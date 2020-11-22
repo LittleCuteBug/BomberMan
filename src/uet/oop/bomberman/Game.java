@@ -145,7 +145,8 @@ public class Game {
         }
     }
     private void remove(){
-        bomb.removeIf(entity -> entity.isRemoved);
+        bomb.removeIf(entity -> entity.isRemoved());
+        flame.removeIf(entity -> entity.isRemoved());
     }
 
     public void update() {

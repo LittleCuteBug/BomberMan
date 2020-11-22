@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities.movingObject;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
@@ -26,7 +27,7 @@ public class Oneal extends MovingEntity {
         int rand = generator.nextInt(4) + 1;
         switch (rand) {
             case 1:
-                if(!canMoveDown() || direction!=Direction.DOWN)
+                if(!canMoveDown() || direction!= Direction.DOWN)
                     moveUp();
                 break;
             case 2:

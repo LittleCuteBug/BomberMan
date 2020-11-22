@@ -12,7 +12,7 @@ public abstract class Entity {
     protected double y;
     protected Image img;
     protected int imgStage = 0;
-    public boolean isRemoved = false;
+    private boolean Removed = false;
 
     public Entity(double x, double y, Image img) {
         this.x = x;
@@ -40,4 +40,12 @@ public abstract class Entity {
     }
 
     public abstract void update();
+
+    public boolean isRemoved() {
+        return Removed;
+    }
+
+    public void remove() {
+        Removed = true;
+    }
 }
