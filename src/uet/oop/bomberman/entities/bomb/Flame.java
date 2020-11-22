@@ -1,6 +1,8 @@
 package uet.oop.bomberman.entities.bomb;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.graphics.Sprite;
@@ -8,6 +10,8 @@ import uet.oop.bomberman.graphics.Sprite;
 public class Flame extends Entity {
     private Direction direction;
     private long placeTime;
+    private Game game;
+
     private static final long timeCountDown = 1000;
 
     private static final Image[] spriteLeft = {Sprite.explosion_horizontal_left_last.getFxImage(), Sprite.explosion_horizontal_left_last1.getFxImage(),
@@ -28,10 +32,11 @@ public class Flame extends Entity {
 
     private static final Image[] spriteVertical = {Sprite.explosion_vertical.getFxImage(),Sprite.explosion_vertical1.getFxImage(),Sprite.explosion_vertical2.getFxImage()};
 
-    public Flame(int x, int y, long placeTime, Direction direction) {
+    public Flame(int x, int y, long placeTime, Direction direction, Game game) {
         super(x, y, Sprite.bomb_exploded.getFxImage());
         this.direction = direction;
         this.placeTime = placeTime;
+        this.game = game;
     }
 
     public void updateImage() {
@@ -67,10 +72,21 @@ public class Flame extends Entity {
         }
     }
 
+    public void updateBomb() {
+        for (Bomb bomb:game.getBomb()) {
+            if(!bomb.isRemoved()) {
+                if(Check.touchCheck(x,y,bomb)) {
+                    bomb.setExplode();
+                }
+            }
+        }
+    }
     public void update() {
         updateImage();
         if(!isRemoved()){
+            updateBomb();
             updateAction();
         }
+
     }
 }

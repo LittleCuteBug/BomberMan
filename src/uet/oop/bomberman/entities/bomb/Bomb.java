@@ -16,6 +16,7 @@ public class Bomb extends Entity {
     private int bombLength;
     private MovingEntity owner;
     private boolean byPass = false;
+    private boolean isExplode = false;
 
     public Bomb(int x, int y, MovingEntity owner, Game game) {
         super(x, y, Bomb.spriteBomb[0]);
@@ -31,17 +32,15 @@ public class Bomb extends Entity {
         img = Bomb.spriteBomb[imgStage];
     }
 
-    private void explore(){
-        if (placeTime + timeCountDown < System.currentTimeMillis()) {
-            owner.decreaseBombCnt();
-            long flamePlaceTime = placeTime+timeCountDown;
-            game.getFlame().add(new Flame((int) x, (int) y,flamePlaceTime, Direction.CENTER));
-            game.getFlame().add(new Flame((int) x + 1, (int) y,flamePlaceTime, Direction.RIGHT));
-            game.getFlame().add(new Flame((int) x - 1, (int) y,flamePlaceTime, Direction.LEFT));
-            game.getFlame().add(new Flame((int) x, (int) y - 1,flamePlaceTime, Direction.UP));
-            game.getFlame().add(new Flame((int) x, (int) y + 1,flamePlaceTime, Direction.DOWN));
-            this.remove();
-        }
+    public void explode(){
+        owner.decreaseBombCnt();
+        long flamePlaceTime = System.currentTimeMillis();
+        game.getFlame().add(new Flame((int) x, (int) y,flamePlaceTime, Direction.CENTER, game));
+        game.getFlame().add(new Flame((int) x + 1, (int) y,flamePlaceTime, Direction.RIGHT, game));
+        game.getFlame().add(new Flame((int) x - 1, (int) y,flamePlaceTime, Direction.LEFT, game));
+        game.getFlame().add(new Flame((int) x, (int) y - 1,flamePlaceTime, Direction.UP, game));
+        game.getFlame().add(new Flame((int) x, (int) y + 1,flamePlaceTime, Direction.DOWN, game));
+        this.remove();
     }
 
     public boolean isByPass() {
@@ -52,11 +51,18 @@ public class Bomb extends Entity {
         return owner;
     }
 
+    public void setExplode() {
+        isExplode = true;
+    }
+
     public void update() {
         if (!Check.touchCheck(x,y,owner))
             byPass = true;
         updateImage();
-        if(!isRemoved())
-            explore();
+        if (!isRemoved()) {
+            if (placeTime + timeCountDown < System.currentTimeMillis()||isExplode) {
+                explode();
+            }
+        }
     }
 }
