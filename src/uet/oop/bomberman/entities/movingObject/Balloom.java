@@ -2,7 +2,9 @@ package uet.oop.bomberman.entities.movingObject;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Direction;
+import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
@@ -12,12 +14,21 @@ public class Balloom extends MovingEntity {
     private static final Image[] spriteRight= {Sprite.balloom_right1.getFxImage(),Sprite.balloom_right2.getFxImage(),Sprite.balloom_right3.getFxImage()};
 
     public Balloom(double x, double y, Game game) {
-        super(x, y, game, Balloom.spriteRight[0], 80, 0, 0,0);
+        super(x, y, game, Balloom.spriteRight[0], 150, 0, 0,0);
     }
 
-    public void update() {
-        updateAction();
-        updateImage();
+    private void updateImage(){
+        imgStage = imgStage%3;
+        switch (direction){
+            case LEFT:
+            case DOWN:
+                img = Balloom.spriteLeft[imgStage];
+                break;
+            case RIGHT:
+            case UP:
+                img = Balloom.spriteRight[imgStage];
+                break;
+        }
     }
 
     private void updateAction(){
@@ -43,17 +54,20 @@ public class Balloom extends MovingEntity {
         }
     }
 
-    private void updateImage(){
-        imgStage = imgStage%3;
-        switch (direction){
-            case LEFT:
-            case DOWN:
-                img = Balloom.spriteLeft[imgStage];
-                break;
-            case RIGHT:
-            case UP:
-                img = Balloom.spriteRight[imgStage];
-                break;
+    public void updateObject() {
+        Entity entity = game.getBomber();
+        if(!entity.isRemoved()) {
+            if(Check.touchCheck(x,y,entity)) {
+                entity.remove();
+            }
+        }
+    }
+
+    public void update() {
+        updateImage();
+        if (!isRemoved()) {
+            updateAction();
+            updateObject();
         }
     }
 }
