@@ -12,7 +12,7 @@ public class Flame extends Entity {
     private long placeTime;
     private Game game;
 
-    private static final long timeCountDown = 1000;
+    private static final long timeCountDown = 600;
 
     private static final Image[] spriteLeft = {Sprite.explosion_horizontal_left_last.getFxImage(), Sprite.explosion_horizontal_left_last1.getFxImage(),
             Sprite.explosion_horizontal_left_last2.getFxImage()};
@@ -40,7 +40,7 @@ public class Flame extends Entity {
     }
 
     public void updateImage() {
-        imgStage = (int)(System.currentTimeMillis()-placeTime)/300%3;
+        imgStage = (int)((System.currentTimeMillis()-placeTime)/(timeCountDown/3)%3);
         switch (direction){
             case LEFT:
                 img = Flame.spriteLeft[imgStage];
@@ -86,7 +86,7 @@ public class Flame extends Entity {
         for(Entity entity:game.getBrick()) {
             if(!entity.isRemoved()) {
                 if(Check.touchCheck(x,y,entity)) {
-                    entity.remove();
+                    entity.dead();
                 }
             }
         }
@@ -94,7 +94,7 @@ public class Flame extends Entity {
         for(Entity entity:game.getEnemy()) {
             if(!entity.isRemoved()) {
                 if(Check.touchCheck(x,y,entity)) {
-                    entity.remove();
+                    entity.dead();
                 }
             }
         }
@@ -102,7 +102,7 @@ public class Flame extends Entity {
         Entity entity = game.getBomber();
         if(!entity.isRemoved()) {
             if(Check.touchCheck(x,y,entity)) {
-                entity.remove();
+                entity.dead();
             }
         }
     }

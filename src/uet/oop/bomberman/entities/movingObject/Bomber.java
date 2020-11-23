@@ -8,11 +8,15 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
 public class Bomber extends MovingEntity {
-    private int life;
     private static final Image[] spriteUp = {Sprite.player_up.getFxImage(),Sprite.player_up_1.getFxImage(),Sprite.player_up_2.getFxImage()};
     private static final Image[] spriteDown = {Sprite.player_down.getFxImage(),Sprite.player_down_1.getFxImage(),Sprite.player_down_2.getFxImage()};
     private static final Image[] spriteLeft = {Sprite.player_left.getFxImage(),Sprite.player_left_1.getFxImage(),Sprite.player_left_2.getFxImage()};
     private static final Image[] spriteRight = {Sprite.player_right.getFxImage(),Sprite.player_right_1.getFxImage(),Sprite.player_right_2.getFxImage()};
+    private static final Image[] spriteDead = {Sprite.player_dead1.getFxImage(),Sprite.player_dead2.getFxImage(),Sprite.player_dead3.getFxImage()};
+
+    private int life;
+    private long invincibleStart = System.currentTimeMillis();
+    private long invincibleLength = 5000;
 
     public Bomber(double x, double y, Game game) {
         super(x, y, game, Bomber.spriteRight[0], 100, 5, 0, 1);
@@ -30,32 +34,56 @@ public class Bomber extends MovingEntity {
             super.placeBomb();
     }
     private void updateImage(){
-        imgStage = imgStage % 3;
-        switch (direction){
-            case UP:
-                img = Bomber.spriteUp[imgStage];
-                break;
-            case DOWN:
-                img = Bomber.spriteDown[imgStage];
-                break;
-            case LEFT:
-                img = Bomber.spriteLeft[imgStage];
-                break;
-            case RIGHT:
-                img = Bomber.spriteRight[imgStage];
-                break;
+        if(isDead()) {
+            imgStage = (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 3) % 3);
+            img = Bomber.spriteDead[imgStage];
+        }
+        else {
+            imgStage = imgStage % 3;
+            switch (direction) {
+                case UP:
+                    img = Bomber.spriteUp[imgStage];
+                    break;
+                case DOWN:
+                    img = Bomber.spriteDown[imgStage];
+                    break;
+                case LEFT:
+                    img = Bomber.spriteLeft[imgStage];
+                    break;
+                case RIGHT:
+                    img = Bomber.spriteRight[imgStage];
+                    break;
+            }
         }
     }
+
+    public boolean isInvincible() {
+        return invincibleStart + invincibleLength > System.currentTimeMillis();
+    }
+
+    @Override
+    public void dead() {
+        if(!isInvincible()&&!isDead()) {
+            //System.out.println("Dead");
+            super.dead();
+        }
+    }
+
     public void reborn(){
         x=1;
         y=1;
         img = Bomber.spriteRight[0];
         direction = Direction.RIGHT;
+        invincibleStart = System.currentTimeMillis();
         super.reborn();
     }
     @Override
     public void update() {
-        updateAction();
+        if(!isDead()) {
+            updateAction();
+        }
         updateImage();
+        if(isRemoved())
+            remove();
     }
 }
