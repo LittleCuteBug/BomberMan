@@ -1,11 +1,8 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import uet.oop.bomberman.entities.movingObject.Bomber;
+import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class Entity {
@@ -22,8 +19,8 @@ public abstract class Entity {
         this.x = x;
         this.y = y;
         this.img = img;
-        if( this instanceof Bomber){
-            deadLength = 300;
+        if( this instanceof MovingEntity ){
+            deadLength = 500;
         } else {
             deadLength = 150;
         }
