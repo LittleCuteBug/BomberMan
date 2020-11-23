@@ -41,7 +41,7 @@ public abstract class Enemy extends MovingEntity {
         Entity entity = game.getBomber();
         if(!entity.isRemoved()) {
             if(Check.touchCheck(x,y,entity)) {
-                entity.remove();
+                entity.dead();
             }
         }
     }
