@@ -3,7 +3,6 @@ package uet.oop.bomberman.entities.movingObject;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Direction;
-import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
 
@@ -19,17 +18,23 @@ public class Bomber extends MovingEntity {
     private long invincibleLength = 5000;
 
     public Bomber(double x, double y, Game game) {
-        super(x, y, game, Bomber.spriteRight[0], 100, 5, 0, 1);
+        super(x, y, game, Bomber.spriteRight[0], 70, 5, 0, 1);
     }
+
+
     private void updateAction(){
         if(Keyboard.up)
-            super.moveUp();
+            if(canMoveUp())
+                moveUp();
         if(Keyboard.down)
-            super.moveDown();
+            if(canMoveDown())
+                moveDown();
         if(Keyboard.left)
-            super.moveLeft();
+            if(canMoveLeft())
+                moveLeft();
         if(Keyboard.right)
-            super.moveRight();
+            if(canMoveRight())
+                moveRight();
         if(Keyboard.space)
             super.placeBomb();
     }
