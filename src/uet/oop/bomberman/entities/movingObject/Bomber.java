@@ -21,20 +21,64 @@ public class Bomber extends MovingEntity {
         super(x, y, game, Bomber.spriteRight[0], 70, 5, 0, 1);
     }
 
+    protected boolean canMoveUpRight() {
+        return canMove(x+speed,y-speed);
+    }
+    protected boolean canMoveUpLeft() {
+        return canMove(x-speed,y-speed);
+    }
+    protected boolean canMoveDownRight() {
+        return canMove(x+speed,y+speed);
+    }
+    protected boolean canMoveDownLeft() {
+        return canMove(x-speed,y+speed);
+    }
 
     private void updateAction(){
-        if(Keyboard.up)
-            if(canMoveUp())
+        if(Keyboard.up) {
+            if (canMoveUp())
                 moveUp();
-        if(Keyboard.down)
-            if(canMoveDown())
-                moveDown();
-        if(Keyboard.left)
-            if(canMoveLeft())
-                moveLeft();
-        if(Keyboard.right)
-            if(canMoveRight())
+            else if (canMoveRight()&&canMoveUpRight()){
                 moveRight();
+                moveUp();
+            } else if (canMoveLeft()&&canMoveUpLeft()){
+                moveLeft();
+                moveUp();
+            }
+        }
+        if(Keyboard.down) {
+            if (canMoveDown())
+                moveDown();
+            else if (canMoveRight()&&canMoveDownRight()){
+                moveRight();
+                moveDown();
+            } else if (canMoveLeft()&&canMoveDownLeft()){
+                moveLeft();
+                moveDown();
+            }
+        }
+        if(Keyboard.left) {
+            if (canMoveLeft())
+                moveLeft();
+            else if (canMoveDown()&&canMoveDownLeft()){
+                moveDown();
+                moveLeft();
+            } else if (canMoveUp()&&canMoveUpLeft()){
+                moveUp();
+                moveLeft();
+            }
+        }
+        if(Keyboard.right) {
+            if (canMoveRight())
+                moveRight();
+            else if (canMoveDown()&&canMoveDownRight()){
+                moveDown();
+                moveRight();
+            } else if (canMoveUp()&&canMoveUpRight()){
+                moveUp();
+                moveRight();
+            }
+        }
         if(Keyboard.space)
             super.placeBomb();
     }
