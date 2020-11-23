@@ -9,34 +9,17 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
 
-public class Balloom extends MovingEntity {
-    private static final Image[] spriteLeft= {Sprite.balloom_left1.getFxImage(),Sprite.balloom_left2.getFxImage(),Sprite.balloom_left3.getFxImage()};
-    private static final Image[] spriteRight= {Sprite.balloom_right1.getFxImage(),Sprite.balloom_right2.getFxImage(),Sprite.balloom_right3.getFxImage()};
-
-    public Balloom(double x, double y, Game game) {
-        super(x, y, game, Balloom.spriteRight[0], 150, 0, 0,0);
+public abstract class Enemy extends MovingEntity {
+    protected Enemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
+        super(x,y,game,img,timeBetweenMove,bombMax,bombCnt,bombLength);
     }
 
-    private void updateImage(){
-        imgStage = imgStage%3;
-        switch (direction){
-            case LEFT:
-            case DOWN:
-                img = Balloom.spriteLeft[imgStage];
-                break;
-            case RIGHT:
-            case UP:
-                img = Balloom.spriteRight[imgStage];
-                break;
-        }
-    }
-
-    private void updateAction(){
+    protected void updateAction(){
         Random generator = new Random();
         int rand = generator.nextInt(4) + 1;
         switch (rand) {
             case 1:
-                if(!canMoveDown()||direction!= Direction.DOWN)
+                if(!canMoveDown() || direction!= Direction.DOWN)
                     moveUp();
                 break;
             case 2:
@@ -54,7 +37,7 @@ public class Balloom extends MovingEntity {
         }
     }
 
-    public void updateObject() {
+    protected void updateObject() {
         Entity entity = game.getBomber();
         if(!entity.isRemoved()) {
             if(Check.touchCheck(x,y,entity)) {
@@ -63,11 +46,4 @@ public class Balloom extends MovingEntity {
         }
     }
 
-    public void update() {
-        updateImage();
-        if (!isRemoved()) {
-            updateAction();
-            updateObject();
-        }
-    }
 }

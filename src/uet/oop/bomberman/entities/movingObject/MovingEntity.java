@@ -6,6 +6,8 @@ import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
+import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
+import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
 
 import static uet.oop.bomberman.entities.Check.touchCheck;
 
@@ -36,7 +38,7 @@ public abstract class MovingEntity extends Entity {
         if((lastTimeMove+timeBetweenMove)>System.currentTimeMillis()) {
             return false;
         }
-        if(this instanceof Balloom|| this instanceof Oneal) {
+        if(this instanceof Balloom || this instanceof Oneal) {
             for(Entity entity : game.getEnemy()) {
                 if (entity!=this && touchCheck(_x, _y, entity)) {
                     return false;
