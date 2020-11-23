@@ -8,14 +8,15 @@ import uet.oop.bomberman.graphics.Sprite;
 public class Oneal extends Enemy {
     private static final Image[] spriteLeft= {Sprite.oneal_left1.getFxImage(),Sprite.oneal_left2.getFxImage(),Sprite.oneal_left3.getFxImage()};
     private static final Image[] spriteRight= {Sprite.oneal_right1.getFxImage(),Sprite.oneal_right2.getFxImage(),Sprite.oneal_right3.getFxImage()};
-    private static final Image spriteDead = Sprite.oneal_dead.getFxImage();
+    private static final Image[] spriteDead = {Sprite.oneal_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Oneal(double x, double y, Game game) {
         super(x, y, game, Oneal.spriteRight[0], 100, 0, 0,0);
     }
 
     private void updateImage(){
         if(isDead()){
-            img = Oneal.spriteDead;
+            imgStage =  (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 4) % 4);
+            img = Oneal.spriteDead[imgStage];
         } else {
             imgStage = imgStage % 3;
             switch (direction){

@@ -8,14 +8,15 @@ import uet.oop.bomberman.graphics.Sprite;
 public class Balloom extends Enemy {
     private static final Image[] spriteLeft= {Sprite.balloom_left1.getFxImage(),Sprite.balloom_left2.getFxImage(),Sprite.balloom_left3.getFxImage()};
     private static final Image[] spriteRight= {Sprite.balloom_right1.getFxImage(),Sprite.balloom_right2.getFxImage(),Sprite.balloom_right3.getFxImage()};
-    private static final Image spriteDead= Sprite.balloom_dead.getFxImage();
+    private static final Image[] spriteDead = {Sprite.balloom_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Balloom(double x, double y, Game game) {
         super(x, y, game, Balloom.spriteRight[0], 150, 0, 0,0);
     }
 
     private void updateImage(){
         if(isDead()) {
-            img = Balloom.spriteDead;
+            imgStage =  (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 4) % 4);
+            img = Balloom.spriteDead[imgStage];
         } else {
             imgStage = imgStage%3;
             switch (direction){
