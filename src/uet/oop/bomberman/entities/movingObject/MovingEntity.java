@@ -6,8 +6,6 @@ import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
-import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
-import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
 
 import static uet.oop.bomberman.entities.Check.touchCheck;
 
@@ -16,7 +14,7 @@ public abstract class MovingEntity extends Entity {
     protected long lastTimeMove;
     protected long timeBetweenPlaceBomb = 300;
     protected long lastTimePlaceBomb;
-    protected final double speed = 0.5;
+    protected final double speed = 0.25;
     protected Direction direction = Direction.RIGHT;
     protected int bombMax;
     protected int bombCnt;
@@ -37,13 +35,6 @@ public abstract class MovingEntity extends Entity {
     {
         if((lastTimeMove+timeBetweenMove)>System.currentTimeMillis()) {
             return false;
-        }
-        if(this instanceof Balloom || this instanceof Oneal) {
-            for(Entity entity : game.getEnemy()) {
-                if (entity!=this && touchCheck(_x, _y, entity)) {
-                    return false;
-                }
-            }
         }
         for (Flame flame: game.getFlame()){
             if (touchCheck(_x, _y, flame)) {
@@ -91,56 +82,47 @@ public abstract class MovingEntity extends Entity {
     }
 
     protected void moveUp() {
-        if (canMoveUp()) {
-            y -= speed;
-            lastTimeMove = System.currentTimeMillis();
-            if(direction == Direction.UP) {
-                imgStage++;
-            } else {
-                direction = Direction.UP;
-                imgStage = 0;
-            }
+        y -= speed;
+        lastTimeMove = System.currentTimeMillis();
+        if(direction == Direction.UP) {
+            imgStage++;
+        } else {
+            direction = Direction.UP;
+            imgStage = 0;
         }
     }
 
     protected void moveDown() {
-        if (canMoveDown()) {
-            y += speed;
-            lastTimeMove = System.currentTimeMillis();
-            if(direction == Direction.DOWN){
-                imgStage++;
-            }else{
-                direction = Direction.DOWN;
-                imgStage = 0;
-            }
-
+        y += speed;
+        lastTimeMove = System.currentTimeMillis();
+        if(direction == Direction.DOWN){
+            imgStage++;
+        }else{
+            direction = Direction.DOWN;
+            imgStage = 0;
         }
     }
 
     protected void moveLeft() {
-        if (canMoveLeft()) {
-            x -= speed;
-            lastTimeMove = System.currentTimeMillis();
-            if(direction == Direction.LEFT)
-            {
-                imgStage++;
-            } else {
-                direction = Direction.LEFT;
-                imgStage = 0;
-            }
+        x -= speed;
+        lastTimeMove = System.currentTimeMillis();
+        if(direction == Direction.LEFT)
+        {
+            imgStage++;
+        } else {
+            direction = Direction.LEFT;
+            imgStage = 0;
         }
     }
 
     protected void moveRight() {
-        if (canMoveRight()) {
-            x += speed;
-            lastTimeMove = System.currentTimeMillis();
-            if(direction == Direction.RIGHT) {
-                imgStage++;
-            } else {
-                direction = Direction.RIGHT;
-                imgStage = 0;
-            }
+        x += speed;
+        lastTimeMove = System.currentTimeMillis();
+        if(direction == Direction.RIGHT) {
+            imgStage++;
+        } else {
+            direction = Direction.RIGHT;
+            imgStage = 0;
         }
     }
     public void increaseBombCnt() {
