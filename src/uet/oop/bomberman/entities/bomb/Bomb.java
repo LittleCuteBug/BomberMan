@@ -109,32 +109,32 @@ public class Bomb extends Entity {
 
         int fLeft = flameToLeft(_x, _y);
         if (fLeft >= 1) {
-            for (int i = 0; i < fLeft - 1; ++i) {
-                game.getFlame().add(new Flame(_x - i - 1, _y, flamePlaceTime, Direction.HORIZONTAL, game));
+            for (int i = 1; i < fLeft; ++i) {
+                game.getFlame().add(new Flame(_x - i, _y, flamePlaceTime, Direction.HORIZONTAL, game));
             }
             game.getFlame().add(new Flame(_x - fLeft, _y, flamePlaceTime, Direction.LEFT, game));
         }
 
         int fRight = flameToRight(_x, _y);
         if (fRight >= 1) {
-            for (int i = 0; i < fRight - 1; ++i) {
-                game.getFlame().add(new Flame(_x + i + 1, _y, flamePlaceTime, Direction.HORIZONTAL, game));
+            for (int i = 1; i < fRight; ++i) {
+                game.getFlame().add(new Flame(_x + i, _y, flamePlaceTime, Direction.HORIZONTAL, game));
             }
             game.getFlame().add(new Flame(_x + fRight, _y, flamePlaceTime, Direction.RIGHT, game));
         }
 
         int fUp = flameToTop(_x, _y);
         if (fUp >= 1) {
-            for (int i = 0; i < fUp - 1; ++i) {
-                game.getFlame().add(new Flame(_x, _y - i - 1, flamePlaceTime, Direction.VERTICAL, game));
+            for (int i = 1; i < fUp; ++i) {
+                game.getFlame().add(new Flame(_x, _y - i, flamePlaceTime, Direction.VERTICAL, game));
             }
             game.getFlame().add(new Flame(_x, _y - fUp, flamePlaceTime, Direction.UP, game));
         }
 
         int fDown = flameToBottom(_x, _y);
         if (fDown >= 1) {
-            for (int i = 0; i < fDown - 1; ++i) {
-                game.getFlame().add(new Flame(_x, _y + i + 1, flamePlaceTime, Direction.VERTICAL, game));
+            for (int i = 1; i < fDown; ++i) {
+                game.getFlame().add(new Flame(_x, _y + i, flamePlaceTime, Direction.VERTICAL, game));
             }
             game.getFlame().add(new Flame(_x, _y + fDown, flamePlaceTime, Direction.DOWN, game));
         }
