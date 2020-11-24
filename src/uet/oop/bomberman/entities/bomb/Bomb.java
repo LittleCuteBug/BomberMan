@@ -42,9 +42,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() < x && entity.getY() == y) {
-                if ((int) (Math.abs(x - entity.getX()) - 1) < flameLeft) {
-                    flameLeft = (int) (Math.abs(x - entity.getX()) - 1);
-                }
+                flameLeft = Math.min((int)(Math.abs(x - entity.getX()) - 1), flameLeft);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() < x && entity.getY() == y) {
+                flameLeft = Math.min((int)(Math.abs(x - entity.getX())), flameLeft);
             }
         }
         return flameLeft;
@@ -55,9 +58,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() > x && entity.getY() == y) {
-                if ((int) (Math.abs(x - entity.getX()) - 1) < flameRight) {
-                    flameRight = (int) (Math.abs(x - entity.getX()) - 1);
-                }
+                flameRight = Math.min((int)(Math.abs(x - entity.getX()) - 1), flameRight);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() > x && entity.getY() == y) {
+                flameRight = Math.min((int)(Math.abs(x - entity.getX())), flameRight);
             }
         }
         return flameRight;
@@ -68,9 +74,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() == x && entity.getY() < y) {
-                if ((int) (Math.abs(y - entity.getY()) - 1) < flameUp) {
-                    flameUp = (int) (Math.abs(y - entity.getY()) - 1);
-                }
+                flameUp = Math.min((int)(Math.abs(y - entity.getY()) - 1), flameUp);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() == x && entity.getY() < y) {
+                flameUp = Math.min((int)(Math.abs(y - entity.getY())), flameUp);
             }
         }
         return flameUp;
@@ -81,9 +90,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() == x && entity.getY() > y) {
-                if ((int) (Math.abs(y - entity.getY()) - 1) < flameDown) {
-                    flameDown = (int) (Math.abs(y - entity.getY()) - 1);
-                }
+                flameDown = Math.min((int)(Math.abs(y - entity.getY()) - 1), flameDown);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() == x && entity.getY() > y) {
+                flameDown = Math.min((int)(Math.abs(y - entity.getY())), flameDown);
             }
         }
         return flameDown;
