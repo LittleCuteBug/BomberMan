@@ -16,6 +16,8 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
     private Game game;
+    private final int DEFAULT_WIDTH = 20;
+    private final int DEFAULT_HEIGHT = 15 ;
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
@@ -27,7 +29,7 @@ public class BombermanGame extends Application {
         //createMap();
         // Tao Canvas
 
-        canvas = new Canvas(Sprite.SCALED_SIZE * game.getWIDTH(), Sprite.SCALED_SIZE * game.getHEIGHT());
+        canvas = new Canvas(Sprite.SCALED_SIZE * DEFAULT_WIDTH, Sprite.SCALED_SIZE * DEFAULT_HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
         // Tao root container

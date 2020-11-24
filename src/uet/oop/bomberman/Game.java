@@ -15,6 +15,7 @@ import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
+import uet.oop.bomberman.graphics.ViewPoint;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -152,7 +153,11 @@ public class Game {
         if(bomber.isRemoved())
             bomber.reborn();
     }
-
+    public void updateViewPoint(double x, double y)
+    {
+        ViewPoint.ViewPointX = x-10;
+        ViewPoint.ViewPointY = y-7;
+    }
     public void update() {
         //wall.forEach(Entity::update);
         brick.forEach(Entity::update);
@@ -163,6 +168,7 @@ public class Game {
         bomb.forEach(Entity::update);
         flame.forEach(Entity::update);
         remove();
+        updateViewPoint(bomber.getX(), bomber.getY());
     }
 
     public void render(GraphicsContext gc) {
