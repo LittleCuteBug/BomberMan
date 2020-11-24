@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.graphics.ViewPoint;
 
 public abstract class Entity {
     protected double x;
@@ -27,7 +28,7 @@ public abstract class Entity {
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(img, x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
+        gc.drawImage(img, (x-ViewPoint.ViewPointX) * Sprite.SCALED_SIZE, (y-ViewPoint.ViewPointY) * Sprite.SCALED_SIZE);
     }
 
     public double getX() {
