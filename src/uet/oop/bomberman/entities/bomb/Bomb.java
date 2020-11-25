@@ -42,9 +42,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() < x && entity.getY() == y) {
-                if ((int) (Math.abs(x - entity.getX()) - 1) < flameLeft) {
-                    flameLeft = (int) (Math.abs(x - entity.getX()) - 1);
-                }
+                flameLeft = Math.min((int)(Math.abs(x - entity.getX()) - 1), flameLeft);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() < x && entity.getY() == y) {
+                flameLeft = Math.min((int)(Math.abs(x - entity.getX())), flameLeft);
             }
         }
         return flameLeft;
@@ -55,9 +58,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() > x && entity.getY() == y) {
-                if ((int) (Math.abs(x - entity.getX()) - 1) < flameRight) {
-                    flameRight = (int) (Math.abs(x - entity.getX()) - 1);
-                }
+                flameRight = Math.min((int)(Math.abs(x - entity.getX()) - 1), flameRight);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() > x && entity.getY() == y) {
+                flameRight = Math.min((int)(Math.abs(x - entity.getX())), flameRight);
             }
         }
         return flameRight;
@@ -68,9 +74,12 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() == x && entity.getY() < y) {
-                if ((int) (Math.abs(y - entity.getY()) - 1) < flameUp) {
-                    flameUp = (int) (Math.abs(y - entity.getY()) - 1);
-                }
+                flameUp = Math.min((int)(Math.abs(y - entity.getY()) - 1), flameUp);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() == x && entity.getY() < y) {
+                flameUp = Math.min((int)(Math.abs(y - entity.getY())), flameUp);
             }
         }
         return flameUp;
@@ -81,43 +90,59 @@ public class Bomb extends Entity {
 
         for (Entity entity : game.getWall()) {
             if (entity.getX() == x && entity.getY() > y) {
-                if ((int) (Math.abs(y - entity.getY()) - 1) < flameDown) {
-                    flameDown = (int) (Math.abs(y - entity.getY()) - 1);
-                }
+                flameDown = Math.min((int)(Math.abs(y - entity.getY()) - 1), flameDown);
+            }
+        }
+        for (Entity entity : game.getBrick()) {
+            if (entity.getX() == x && entity.getY() > y) {
+                flameDown = Math.min((int)(Math.abs(y - entity.getY())), flameDown);
             }
         }
         return flameDown;
     }
 
-    /*public void checkLeft(int x, int y) {
-        for (Entity entity : game.getWall()) {
-            if (entity.getX() > 0 && entity.getX() <= x && entity.getX() >= x - 1 && entity.getY() == y) {
-                System.out.println(entity.getX() + " " + entity.getY());
+    public void flameOfBomb() {
+        long flamePlaceTime = System.currentTimeMillis();
+        int _x = (int) x;
+        int _y = (int) y;
+        game.getFlame().add(new Flame(_x, _y,flamePlaceTime, Direction.CENTER, game));
+
+        int fLeft = flameToLeft(_x, _y);
+        if (fLeft >= 1) {
+            for (int i = 1; i < fLeft; ++i) {
+                game.getFlame().add(new Flame(_x - i, _y, flamePlaceTime, Direction.HORIZONTAL, game));
             }
+            game.getFlame().add(new Flame(_x - fLeft, _y, flamePlaceTime, Direction.LEFT, game));
         }
-    }*/
+
+        int fRight = flameToRight(_x, _y);
+        if (fRight >= 1) {
+            for (int i = 1; i < fRight; ++i) {
+                game.getFlame().add(new Flame(_x + i, _y, flamePlaceTime, Direction.HORIZONTAL, game));
+            }
+            game.getFlame().add(new Flame(_x + fRight, _y, flamePlaceTime, Direction.RIGHT, game));
+        }
+
+        int fUp = flameToTop(_x, _y);
+        if (fUp >= 1) {
+            for (int i = 1; i < fUp; ++i) {
+                game.getFlame().add(new Flame(_x, _y - i, flamePlaceTime, Direction.VERTICAL, game));
+            }
+            game.getFlame().add(new Flame(_x, _y - fUp, flamePlaceTime, Direction.UP, game));
+        }
+
+        int fDown = flameToBottom(_x, _y);
+        if (fDown >= 1) {
+            for (int i = 1; i < fDown; ++i) {
+                game.getFlame().add(new Flame(_x, _y + i, flamePlaceTime, Direction.VERTICAL, game));
+            }
+            game.getFlame().add(new Flame(_x, _y + fDown, flamePlaceTime, Direction.DOWN, game));
+        }
+    }
 
     public void explode(){
         owner.decreaseBombCnt();
-        long flamePlaceTime = System.currentTimeMillis();
-        game.getFlame().add(new Flame((int) x, (int) y,flamePlaceTime, Direction.CENTER, game));
-//        System.out.println(flameToLeft((int) x, (int) y));
-        for (int i = 0; i < flameToLeft((int) x, (int) y); ++i) {
-            game.getFlame().add(new Flame((int) x - i - 1, (int) y,flamePlaceTime, Direction.LEFT, game));
-        }
-//        System.out.println("flameRight = " + flameToRight((int) x, (int) y));
-//        System.out.println("flameUp = " + flameToTop((int) x, (int) y));
-//        System.out.println("flameDown = " + flameToBottom((int) x, (int) y));
-//        game.getFlame().add(new Flame((int) x - 1, (int) y,flamePlaceTime, Direction.LEFT, game));
-        for (int i = 0; i < flameToRight((int) x, (int) y); ++i) {
-            game.getFlame().add(new Flame((int) x + i + 1, (int) y,flamePlaceTime, Direction.RIGHT, game));
-        }
-        for (int i = 0; i < flameToTop((int) x, (int) y); ++i) {
-            game.getFlame().add(new Flame((int) x, (int) y - i - 1,flamePlaceTime, Direction.UP, game));
-        }
-        for (int i = 0; i < flameToBottom((int) x, (int) y); ++i) {
-            game.getFlame().add(new Flame((int) x, (int) y + i + 1,flamePlaceTime, Direction.DOWN, game));
-        }
+        flameOfBomb();
         this.remove();
     }
 
