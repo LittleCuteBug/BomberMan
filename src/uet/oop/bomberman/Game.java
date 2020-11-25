@@ -15,6 +15,7 @@ import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
+import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.graphics.ViewPoint;
 
 import java.io.File;
@@ -24,8 +25,12 @@ import java.util.Scanner;
 
 public class Game {
 
-    private int WIDTH = 31;
-    private int HEIGHT = 13;
+    private int WIDTH;
+    private int HEIGHT;
+
+    private double gameHEIGHT;
+    private double gameWIGHT;
+
     private int level;
 
     private List<MovingEntity> enemy = new ArrayList<>();
@@ -79,6 +84,10 @@ public class Game {
     }
 
     public void createMap() {
+        WIDTH = 20;
+        HEIGHT = 20;
+        gameHEIGHT = HEIGHT*Sprite.SCALED_SIZE;
+        gameWIGHT = WIDTH*Sprite.SCALED_SIZE;
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 Entity object;
@@ -102,6 +111,8 @@ public class Game {
             level = reader.nextInt();
             HEIGHT = reader.nextInt();
             WIDTH = reader.nextInt();
+            gameHEIGHT = HEIGHT*Sprite.SCALED_SIZE;
+            gameWIGHT = WIDTH*Sprite.SCALED_SIZE;
             reader.nextLine();
             for(int j=0;j<HEIGHT;j++)
             {
@@ -146,19 +157,38 @@ public class Game {
         }
     }
     private void remove(){
-        bomb.removeIf(entity -> entity.isRemoved());
-        flame.removeIf(entity -> entity.isRemoved());
-        brick.removeIf(entity -> entity.isRemoved());
-        enemy.removeIf(entity -> entity.isRemoved());
+        bomb.removeIf(Entity::isRemoved);
+        flame.removeIf(Entity::isRemoved);
+        brick.removeIf(Entity::isRemoved);
+        enemy.removeIf(Entity::isRemoved);
         if(bomber.isRemoved())
             bomber.reborn();
     }
-    public void updateViewPoint(double x, double y)
+    public void updateViewPoint(double x, double y, double stageWidth, double stageHeight)
     {
-        ViewPoint.ViewPointX = x-10;
-        ViewPoint.ViewPointY = y-7;
+        double borderHEIGHT = stageHeight/6;
+        double borderWIGHT = stageWidth/6;
+        if(x>-ViewPoint.ViewPointX+stageWidth-borderWIGHT-Sprite.SCALED_SIZE)
+            ViewPoint.ViewPointX = stageWidth-x-borderWIGHT-Sprite.SCALED_SIZE;
+        if(x>gameWIGHT-borderWIGHT-Sprite.SCALED_SIZE)
+            ViewPoint.ViewPointX = stageWidth-gameWIGHT;
+
+        if(x<-ViewPoint.ViewPointX+borderWIGHT)
+            ViewPoint.ViewPointX = borderWIGHT-x;
+        if(x<borderWIGHT)
+            ViewPoint.ViewPointX = 0;
+
+        if(y>-ViewPoint.ViewPointY+stageHeight- borderHEIGHT - Sprite.SCALED_SIZE) {
+            ViewPoint.ViewPointY = stageHeight - y - borderHEIGHT - Sprite.SCALED_SIZE;
+        }
+        if(y>gameHEIGHT-borderHEIGHT - Sprite.SCALED_SIZE)
+            ViewPoint.ViewPointY = stageHeight-gameHEIGHT;
+        if(y<-ViewPoint.ViewPointY+borderHEIGHT)
+            ViewPoint.ViewPointY = borderHEIGHT-y;
+        if(y<borderHEIGHT)
+            ViewPoint.ViewPointY = 0;
     }
-    public void update() {
+    public void update(double stageWidth, double stageHeight) {
         //wall.forEach(Entity::update);
         brick.forEach(Entity::update);
         item.forEach(Entity::update);
@@ -168,7 +198,7 @@ public class Game {
         bomb.forEach(Entity::update);
         flame.forEach(Entity::update);
         remove();
-        updateViewPoint(bomber.getX(), bomber.getY());
+        updateViewPoint(bomber.getX()*Sprite.SCALED_SIZE, bomber.getY()*Sprite.SCALED_SIZE,stageWidth,stageHeight);
     }
 
     public void render(GraphicsContext gc) {
