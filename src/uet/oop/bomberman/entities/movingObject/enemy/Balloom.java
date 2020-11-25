@@ -13,32 +13,13 @@ public class Balloom extends Enemy {
         super(x, y, game, Balloom.spriteRight[0], 150, 0, 0,0);
     }
 
-    private void updateImage(){
-        if(isDead()) {
-            imgStage =  (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 4) % 4);
-            img = Balloom.spriteDead[imgStage];
-        } else {
-            imgStage = imgStage%3;
-            switch (direction){
-                case LEFT:
-                case DOWN:
-                    img = Balloom.spriteLeft[imgStage];
-                    break;
-                case RIGHT:
-                case UP:
-                    img = Balloom.spriteRight[imgStage];
-                    break;
-            }
-        }
+    protected Image getSpriteLeft(int imgStage){
+        return spriteLeft[imgStage];
     }
-
-    public void update() {
-        updateImage();
-        if (!isDead()) {
-            updateAction();
-            updateObject();
-        }
-        if(isRemoved())
-            remove();
+    protected Image getSpriteRight(int imgStage){
+        return spriteRight[imgStage];
+    }
+    protected Image getSpriteDead(int imgStage){
+        return spriteDead[imgStage];
     }
 }

@@ -14,7 +14,7 @@ public abstract class MovingEntity extends Entity {
     protected long lastTimeMove;
     protected long timeBetweenPlaceBomb = 300;
     protected long lastTimePlaceBomb;
-    protected final double speed = 0.25;
+    protected static final double speed = 0.25;
     protected Direction direction = Direction.RIGHT;
     protected int bombMax;
     protected int bombCnt;

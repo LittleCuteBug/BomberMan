@@ -5,6 +5,8 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
+import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
 
@@ -58,5 +60,38 @@ public abstract class Enemy extends MovingEntity {
             }
         }
     }
+    abstract protected Image getSpriteLeft(int imgStage);
+    abstract protected Image getSpriteRight(int imgStage);
+    abstract protected Image getSpriteDead(int imgStage);
 
+    protected void updateImage(){
+        if(isDead()){
+            imgStage =  (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 4) % 4);
+            img = getSpriteDead(imgStage);
+        } else {
+            imgStage = imgStage % 3;
+            switch (direction){
+                case LEFT:
+                case DOWN:
+                    img = getSpriteLeft(imgStage);
+                    break;
+                case RIGHT:
+                case UP:
+                    img = getSpriteRight(imgStage);
+                    break;
+            }
+        }
+    }
+    
+    @Override
+    public void update() {
+        updateImage();
+        if (!isDead()) {
+            updateAction();
+            updateObject();
+        }
+        if(isRemoved()){
+            remove();
+        }
+    }
 }

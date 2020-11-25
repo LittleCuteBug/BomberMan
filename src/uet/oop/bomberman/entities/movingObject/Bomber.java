@@ -15,7 +15,7 @@ public class Bomber extends MovingEntity {
 
     private int life;
     private long invincibleStart = System.currentTimeMillis();
-    private long invincibleLength = 5000;
+    private long invincibleLength = 1000;
 
     public Bomber(double x, double y, Game game) {
         super(x, y, game, Bomber.spriteRight[0], 70, 5, 0, 1);

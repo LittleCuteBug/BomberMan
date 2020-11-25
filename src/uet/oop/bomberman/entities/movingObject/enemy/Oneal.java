@@ -13,35 +13,15 @@ public class Oneal extends Enemy {
         super(x, y, game, Oneal.spriteRight[0], 100, 0, 0,0);
     }
 
-    private void updateImage(){
-        if(isDead()){
-            imgStage =  (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 4) % 4);
-            img = Oneal.spriteDead[imgStage];
-        } else {
-            imgStage = imgStage % 3;
-            switch (direction){
-                case LEFT:
-                case DOWN:
-                    img = Oneal.spriteLeft[imgStage];
-                    break;
-                case RIGHT:
-                case UP:
-                    img = Oneal.spriteRight[imgStage];
-                    break;
-            }
-        }
+
+    protected Image getSpriteLeft(int imgStage){
+        return spriteLeft[imgStage];
+    }
+    protected Image getSpriteRight(int imgStage){
+        return spriteRight[imgStage];
+    }
+    protected Image getSpriteDead(int imgStage){
+        return spriteDead[imgStage];
     }
 
-    public void update() {
-        // dùng thuật toán gì đó để đưa Oneal đến với Bomber
-        // cần dùng vị trí của Bomber?
-        updateImage();
-        if (!isDead()) {
-            updateAction();
-            updateObject();
-        }
-        if(isRemoved()){
-            remove();
-        }
-    }
 }

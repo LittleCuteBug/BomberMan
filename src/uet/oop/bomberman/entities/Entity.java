@@ -28,7 +28,7 @@ public abstract class Entity {
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(img, (x-ViewPoint.ViewPointX) * Sprite.SCALED_SIZE, (y-ViewPoint.ViewPointY) * Sprite.SCALED_SIZE);
+        gc.drawImage(img, x * Sprite.SCALED_SIZE + ViewPoint.ViewPointX, y * Sprite.SCALED_SIZE + ViewPoint.ViewPointY);
     }
 
     public double getX() {
@@ -43,7 +43,7 @@ public abstract class Entity {
 
     public boolean isRemoved() {
         if (dead) {
-            removed = dead & (deadTime + deadLength < System.currentTimeMillis());
+            removed = deadTime + deadLength < System.currentTimeMillis();
         }
         return removed;
     }
