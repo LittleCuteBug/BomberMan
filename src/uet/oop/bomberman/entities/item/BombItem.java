@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities.item;
 
 import uet.oop.bomberman.Game;
+import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class BombItem extends Item {
@@ -10,6 +11,7 @@ public class BombItem extends Item {
 
     @Override
     protected void itemUsed() {
-
+        game.getBomber().increaseBombCnt();
+//        System.out.println("done bomb item");
     }
 }

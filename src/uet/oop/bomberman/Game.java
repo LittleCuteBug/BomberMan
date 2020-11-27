@@ -163,6 +163,7 @@ public class Game {
         enemy.removeIf(Entity::isRemoved);
         if(bomber.isRemoved())
             bomber.reborn();
+        item.removeIf(Entity::isRemoved);
     }
     public void updateViewPoint(double x, double y, double stageWidth, double stageHeight)
     {

@@ -10,6 +10,6 @@ public class SpeedItem extends Item {
 
     @Override
     protected void itemUsed() {
-
+        game.getBomber().increaseSpeed();
     }
 }

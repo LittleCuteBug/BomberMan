@@ -65,6 +65,14 @@ public abstract class MovingEntity extends Entity {
         return bombLength;
     }
 
+    public void increaseBombLength() {
+        bombLength++;
+    }
+
+    public void increaseSpeed() {
+        timeBetweenMove /= 2;
+    }
+
     protected boolean canMoveUp() {
         return canMove(x,y-speed);
     }

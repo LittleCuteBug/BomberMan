@@ -10,6 +10,7 @@ public class FlameItem extends Item {
 
     @Override
     protected void itemUsed() {
-
+        game.getBomber().increaseBombLength();
+//        System.out.println("done flame item");
     }
 }
