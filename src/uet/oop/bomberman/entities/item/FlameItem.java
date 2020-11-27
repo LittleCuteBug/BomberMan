@@ -1,13 +1,15 @@
 package uet.oop.bomberman.entities.item;
 
+import uet.oop.bomberman.Game;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class FlameItem extends Item {
-    public FlameItem(int x, int y) {
-        super(x, y, Sprite.powerup_flames.getFxImage());
+    public FlameItem(int x, int y, Game game) {
+        super(x, y, Sprite.powerup_flames.getFxImage(), game);
     }
 
-    public void update() {
-        // Ăn được thì kích hoạt tăng bomb.Flame += 1.
+    @Override
+    protected void itemUsed() {
+
     }
 }

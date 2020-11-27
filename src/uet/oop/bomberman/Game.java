@@ -141,13 +141,13 @@ public class Game {
                             enemy.add(new Oneal(i,j,this));
                             break;
                         case 'b':
-                            item.add(new BombItem(i,j));
+                            item.add(new BombItem(i,j,this));
                             break;
                         case 'f':
-                            item.add(new FlameItem(i,j));
+                            item.add(new FlameItem(i,j,this));
                             break;
                         case 's':
-                            item.add(new SpeedItem(i,j));
+                            item.add(new SpeedItem(i,j,this));
                             break;
                     }
                 }

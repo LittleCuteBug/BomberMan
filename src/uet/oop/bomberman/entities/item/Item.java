@@ -1,11 +1,19 @@
 package uet.oop.bomberman.entities.item;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 
 public abstract class Item extends Entity {
-    public Item(int x, int y, Image img) {
+    protected final Game game;
+    public Item(int x, int y, Image img, Game game) {
         super (x, y, img);
+        this.game = game;
     }
-    public abstract void update();
+
+    protected abstract void itemUsed();
+
+    public void update() {
+        // kiểm tra nếu chạm bomber thì gọi hàm itemUsed rồi remove
+    }
 }
