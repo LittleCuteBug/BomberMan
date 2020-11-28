@@ -29,7 +29,7 @@ public class Game {
     private int HEIGHT;
 
     private double gameHEIGHT;
-    private double gameWIGHT;
+    private double gameWIDHT;
 
     private int level;
 
@@ -83,79 +83,28 @@ public class Game {
         return portal;
     }
 
-    public void createMap() {
-        WIDTH = 20;
-        HEIGHT = 20;
-        gameHEIGHT = HEIGHT*Sprite.SCALED_SIZE;
-        gameWIGHT = WIDTH*Sprite.SCALED_SIZE;
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j);
-                    wall.add(object);
-                }
-            }
-        }
-        bomber = new Bomber(1,1,this);
-        portal = new Portal(WIDTH-2,HEIGHT-2);
+    public void setWIDTH(int WIDTH) {
+        this.WIDTH = WIDTH;
+        this.gameWIDHT = WIDTH*Sprite.SCALED_SIZE;
     }
 
-    void loadMap(String filePath){
-        enemy.clear();
-        item.clear();
-        wall.clear();
-        brick.clear();
-        try {
-            Scanner reader = new Scanner(new File(filePath));
-            level = reader.nextInt();
-            HEIGHT = reader.nextInt();
-            WIDTH = reader.nextInt();
-            gameHEIGHT = HEIGHT*Sprite.SCALED_SIZE;
-            gameWIGHT = WIDTH*Sprite.SCALED_SIZE;
-            reader.nextLine();
-            for(int j=0;j<HEIGHT;j++)
-            {
-                String line = reader.nextLine();
-                //System.out.println(line);
-                for(int i = 0;i<WIDTH;i++)
-                {
-                    char c = line.charAt(i);
-                    switch (c) {
-                        case '#':
-                            wall.add(new Wall(i,j));
-                            break;
-                        case '*':
-                            brick.add(new Brick(i,j));
-                            break;
-                        case 'x':
-                            portal = new Portal(i,j);
-                            break;
-                        case 'p':
-                            bomber = new Bomber(i,j,this);
-                            break;
-                        case '1':
-                            enemy.add(new Balloom(i,j,this));
-                            break;
-                        case '2':
-                            enemy.add(new Oneal(i,j,this));
-                            break;
-                        case 'b':
-                            item.add(new BombItem(i,j,this));
-                            break;
-                        case 'f':
-                            item.add(new FlameItem(i,j,this));
-                            break;
-                        case 's':
-                            item.add(new SpeedItem(i,j,this));
-                            break;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void setHEIGHT(int HEIGHT) {
+        this.HEIGHT = HEIGHT;
+        this.gameHEIGHT = HEIGHT*Sprite.SCALED_SIZE;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setBomber(Bomber bomber) {
+        this.bomber = bomber;
+    }
+
+    public void setPortal(Portal portal) {
+        this.portal = portal;
+    }
+
     private void remove(){
         bomb.removeIf(Entity::isRemoved);
         flame.removeIf(Entity::isRemoved);
@@ -170,8 +119,8 @@ public class Game {
         double borderWIGHT = stageWidth/6;
         if(x>-ViewPoint.ViewPointX+stageWidth-borderWIGHT-Sprite.SCALED_SIZE)
             ViewPoint.ViewPointX = stageWidth-x-borderWIGHT-Sprite.SCALED_SIZE;
-        if(x>gameWIGHT-borderWIGHT-Sprite.SCALED_SIZE)
-            ViewPoint.ViewPointX = stageWidth-gameWIGHT;
+        if(x>gameWIDHT-borderWIGHT-Sprite.SCALED_SIZE)
+            ViewPoint.ViewPointX = stageWidth-gameWIDHT;
 
         if(x<-ViewPoint.ViewPointX+borderWIGHT)
             ViewPoint.ViewPointX = borderWIGHT-x;

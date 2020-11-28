@@ -25,7 +25,7 @@ public class BombermanGame extends Application {
     @Override
     public void start(Stage stage) {
         game = new Game();
-        game.loadMap("res/levels/Level1.txt");
+        Map.loadMap("res/levels/Level1.txt",game);
         //createMap();
         // Tao Canvas
 
