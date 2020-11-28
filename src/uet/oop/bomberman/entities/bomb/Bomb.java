@@ -27,8 +27,8 @@ public class Bomb extends Entity {
         this.placeTime = System.currentTimeMillis();
         this.owner = owner;
         this.game = game;
-//        this.bombLength = owner.getBombLength();
-        this.bombLength = 2;
+        this.bombLength = owner.getBombLength();
+//        this.bombLength = 2;
         owner.increaseBombCnt();
 
     }
