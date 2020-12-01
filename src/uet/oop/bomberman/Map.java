@@ -74,28 +74,22 @@ public class Map {
                             enemy.add(new Kondoria(i, j, game));
                             break;
                         case 'b':
-                            item.add(new BombItem(i,j,game));
-                            brick.add(new ItemBrick(i, j));
+                            brick.add(new ItemBrick(i,j,new BombItem(i,j,game),game));
                             break;
                         case 'f':
-                            item.add(new FlameItem(i,j,game));
-                            brick.add(new ItemBrick(i, j));
+                            brick.add(new ItemBrick(i,j,new FlameItem(i,j,game),game));
                             break;
                         case 's':
-                            item.add(new SpeedItem(i,j,game));
-                            brick.add(new ItemBrick(i, j));
+                            brick.add(new ItemBrick(i,j,new SpeedItem(i,j,game),game));
                             break;
                         case 'd':
-                            item.add(new BombPassItem(i, j, game));
-                            brick.add(new ItemBrick(i, j));
+                            brick.add(new ItemBrick(i,j,new BombPassItem(i, j, game),game));
                             break;
                         case 'e':
-                            item.add(new FlamePassItem(i, j, game));
-                            brick.add(new ItemBrick(i, j));
+                            brick.add(new ItemBrick(i,j,new FlamePassItem(i, j, game),game));
                             break;
                         case 'g':
-                            item.add(new WallPassItem(i, j, game));
-                            brick.add(new ItemBrick(i, j));
+                            brick.add(new ItemBrick(i,j,new WallPassItem(i, j, game),game));
                             break;
                     }
                 }

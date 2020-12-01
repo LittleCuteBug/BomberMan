@@ -90,7 +90,7 @@ public abstract class MovingEntity extends Entity {
     }
 
     public void increaseSpeed() {
-        timeBetweenMove /= 1.5;
+        timeBetweenMove /= 1.2;
     }
 
     protected boolean canMoveUp() {
@@ -170,6 +170,11 @@ public abstract class MovingEntity extends Entity {
         if (bombCnt >= bombMax || lastTimePlaceBomb + timeBetweenPlaceBomb > System.currentTimeMillis())
             return false;
         for (Entity entity : game.getBrick()) {
+            if (touchCheck(_x, _y, entity)) {
+                return false;
+            }
+        }
+        for (Entity entity : game.getEnemy()) {
             if (touchCheck(_x, _y, entity)) {
                 return false;
             }

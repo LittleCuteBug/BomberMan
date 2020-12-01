@@ -12,6 +12,7 @@ public class Kondoria extends Enemy {
     public Kondoria(double x, double y, Game game) {
         super(x, y, game, Kondoria.spriteRight[0], 150, 0, 0,0);
         this.setBrickPassUsed(false);
+        this.setBombPassUsed(false);
     }
 
     protected Image getSpriteLeft(int imgStage){
