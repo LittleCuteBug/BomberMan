@@ -8,6 +8,7 @@ import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.entities.movingObject.Bomber;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
+import uet.oop.bomberman.entities.movingObject.enemy.Kondoria;
 import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.ItemBrick;
@@ -68,6 +69,9 @@ public class Map {
                             break;
                         case '2':
                             enemy.add(new Oneal(i,j,game));
+                            break;
+                        case '3':
+                            enemy.add(new Kondoria(i, j, game));
                             break;
                         case 'b':
                             item.add(new BombItem(i,j,game));
