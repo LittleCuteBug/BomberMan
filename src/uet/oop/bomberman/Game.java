@@ -153,8 +153,8 @@ public class Game {
 
     public void render(GraphicsContext gc) {
         wall.forEach(g -> g.render(gc));
-        brick.forEach(g -> g.render(gc));
         item.forEach(g -> g.render(gc));
+        brick.forEach(g -> g.render(gc));
         portal.render(gc);
         flame.forEach(g -> g.render(gc));
         bomb.forEach(g->g.render(gc));

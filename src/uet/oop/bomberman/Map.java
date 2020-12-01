@@ -10,6 +10,7 @@ import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
 import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
 import uet.oop.bomberman.entities.tile.Brick;
+import uet.oop.bomberman.entities.tile.ItemBrick;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
 
@@ -70,6 +71,7 @@ public class Map {
                             break;
                         case 'b':
                             item.add(new BombItem(i,j,game));
+                            brick.add(new ItemBrick(i, j));
                             break;
                         case 'f':
                             item.add(new FlameItem(i,j,game));
