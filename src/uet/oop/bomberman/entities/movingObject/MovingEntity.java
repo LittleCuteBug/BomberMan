@@ -19,9 +19,9 @@ public abstract class MovingEntity extends Entity {
     protected int bombMax;
     protected int bombCnt;
     protected int bombLength;
-    protected boolean bombPassUsed = false;
-    protected boolean flamePassUsed = false;
-    protected boolean brickPassUsed = false;
+    protected boolean bombPassUsed = true;
+    protected boolean flamePassUsed = true;
+    protected boolean brickPassUsed = true;
     protected Game game;
 
     protected MovingEntity(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
@@ -33,6 +33,10 @@ public abstract class MovingEntity extends Entity {
         this.game = game;
         this.lastTimeMove = System.currentTimeMillis();
         this.lastTimePlaceBomb = System.currentTimeMillis();
+    }
+
+    public boolean isFlamePassUsed() {
+        return flamePassUsed;
     }
 
     public void setBombPassUsed(boolean bombPassUsed) {
@@ -53,19 +57,19 @@ public abstract class MovingEntity extends Entity {
             return false;
         }
         for (Flame flame: game.getFlame()){
-            if (touchCheck(_x, _y, flame) && flamePassUsed == false) {
+            if (touchCheck(_x, _y, flame) && flamePassUsed) {
                 return false;
             }
         }
         for (Bomb bomb: game.getBomb()){
             if(bomb.isByPass()||bomb.getOwner()!=this) {
-                if (touchCheck(_x, _y, bomb) && bombPassUsed == false) {
+                if (touchCheck(_x, _y, bomb) && bombPassUsed) {
                     return false;
                 }
             }
         }
         for (Entity entity : game.getBrick()) {
-            if (touchCheck(_x, _y, entity) && brickPassUsed == false) {
+            if (touchCheck(_x, _y, entity) && brickPassUsed) {
                 return false;
             }
         }
@@ -86,7 +90,7 @@ public abstract class MovingEntity extends Entity {
     }
 
     public void increaseSpeed() {
-        timeBetweenMove /= 2;
+        timeBetweenMove /= 1.5;
     }
 
     protected boolean canMoveUp() {
@@ -165,6 +169,11 @@ public abstract class MovingEntity extends Entity {
     {
         if (bombCnt >= bombMax || lastTimePlaceBomb + timeBetweenPlaceBomb > System.currentTimeMillis())
             return false;
+        for (Entity entity : game.getBrick()) {
+            if (touchCheck(_x, _y, entity)) {
+                return false;
+            }
+        }
         for (Entity entity : game.getBomb() ) {
             if (touchCheck(_x, _y, entity)) {
                 return false;

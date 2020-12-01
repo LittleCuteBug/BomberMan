@@ -101,7 +101,7 @@ public class Flame extends Entity {
 
         Entity entity = game.getBomber();
         if(!entity.isRemoved()) {
-            if(Check.touchCheck(x,y,entity)) {
+            if(Check.touchCheck(x,y,entity)  && game.getBomber().isFlamePassUsed()) {
                 entity.dead();
             }
         }
