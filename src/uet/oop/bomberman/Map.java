@@ -79,18 +79,23 @@ public class Map {
                             break;
                         case 'f':
                             item.add(new FlameItem(i,j,game));
+                            brick.add(new ItemBrick(i, j));
                             break;
                         case 's':
                             item.add(new SpeedItem(i,j,game));
+                            brick.add(new ItemBrick(i, j));
                             break;
                         case 'd':
                             item.add(new BombPassItem(i, j, game));
+                            brick.add(new ItemBrick(i, j));
                             break;
                         case 'e':
                             item.add(new FlamePassItem(i, j, game));
+                            brick.add(new ItemBrick(i, j));
                             break;
                         case 'g':
                             item.add(new WallPassItem(i, j, game));
+                            brick.add(new ItemBrick(i, j));
                             break;
                     }
                 }
