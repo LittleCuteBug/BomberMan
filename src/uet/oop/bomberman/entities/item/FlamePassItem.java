@@ -1,11 +1,13 @@
 package uet.oop.bomberman.entities.item;
 
+import javafx.scene.image.Image;
 import uet.oop.bomberman.Game;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class FlamePassItem extends Item {
+    private static final Image img = Sprite.powerup_flamepass.getFxImage();
     public FlamePassItem(int x, int y, Game game) {
-        super(x, y, Sprite.powerup_flamepass.getFxImage(),game);
+        super(x, y, img, game);
     }
 
     @Override

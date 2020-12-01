@@ -21,7 +21,7 @@ public abstract class MovingEntity extends Entity {
     protected int bombLength;
     protected boolean bombPassUsed = false;
     protected boolean flamePassUsed = false;
-    protected boolean wallPassUsed = false;
+    protected boolean brickPassUsed = false;
     protected Game game;
 
     protected MovingEntity(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
@@ -43,8 +43,8 @@ public abstract class MovingEntity extends Entity {
         this.flamePassUsed = flamePassUsed;
     }
 
-    public void setWallPassUsed(boolean wallPassUsed) {
-        this.wallPassUsed = wallPassUsed;
+    public void setBrickPassUsed(boolean wallPassUsed) {
+        this.brickPassUsed = wallPassUsed;
     }
 
     protected boolean canMove(double _x, double _y)
@@ -65,12 +65,12 @@ public abstract class MovingEntity extends Entity {
             }
         }
         for (Entity entity : game.getBrick()) {
-            if (touchCheck(_x, _y, entity)) {
+            if (touchCheck(_x, _y, entity) && brickPassUsed == false) {
                 return false;
             }
         }
         for (Entity entity : game.getWall()) {
-            if (touchCheck(_x, _y, entity) && wallPassUsed == false) {
+            if (touchCheck(_x, _y, entity)) {
                 return false;
             }
         }
