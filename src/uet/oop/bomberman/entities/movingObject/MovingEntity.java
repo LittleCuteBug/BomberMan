@@ -19,6 +19,9 @@ public abstract class MovingEntity extends Entity {
     protected int bombMax;
     protected int bombCnt;
     protected int bombLength;
+    protected boolean bombPassUsed = false;
+    protected boolean flamePassUsed = false;
+    protected boolean wallPassUsed = false;
     protected Game game;
 
     protected MovingEntity(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
@@ -31,19 +34,32 @@ public abstract class MovingEntity extends Entity {
         this.lastTimeMove = System.currentTimeMillis();
         this.lastTimePlaceBomb = System.currentTimeMillis();
     }
+
+    public void setBombPassUsed(boolean bombPassUsed) {
+        this.bombPassUsed = bombPassUsed;
+    }
+
+    public void setFlamePassUsed(boolean flamePassUsed) {
+        this.flamePassUsed = flamePassUsed;
+    }
+
+    public void setWallPassUsed(boolean wallPassUsed) {
+        this.wallPassUsed = wallPassUsed;
+    }
+
     protected boolean canMove(double _x, double _y)
     {
         if((lastTimeMove+timeBetweenMove)>System.currentTimeMillis()) {
             return false;
         }
         for (Flame flame: game.getFlame()){
-            if (touchCheck(_x, _y, flame)) {
+            if (touchCheck(_x, _y, flame) && flamePassUsed == false) {
                 return false;
             }
         }
         for (Bomb bomb: game.getBomb()){
             if(bomb.isByPass()||bomb.getOwner()!=this) {
-                if (touchCheck(_x, _y, bomb)) {
+                if (touchCheck(_x, _y, bomb) && bombPassUsed == false) {
                     return false;
                 }
             }
@@ -54,7 +70,7 @@ public abstract class MovingEntity extends Entity {
             }
         }
         for (Entity entity : game.getWall()) {
-            if (touchCheck(_x, _y, entity)) {
+            if (touchCheck(_x, _y, entity) && wallPassUsed == false) {
                 return false;
             }
         }
@@ -133,12 +149,18 @@ public abstract class MovingEntity extends Entity {
             imgStage = 0;
         }
     }
+
+    public void increaseBombMax() {
+        bombMax++;
+    }
+
     public void increaseBombCnt() {
         bombCnt++;
     }
     public void decreaseBombCnt() {
         bombCnt--;
     }
+
     protected boolean canPlaceBomb(double _x, double _y)
     {
         if (bombCnt >= bombMax || lastTimePlaceBomb + timeBetweenPlaceBomb > System.currentTimeMillis())

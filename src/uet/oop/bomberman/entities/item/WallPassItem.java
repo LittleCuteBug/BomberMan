@@ -10,6 +10,6 @@ public class WallPassItem extends Item {
 
     @Override
     protected void itemUsed() {
-
+        game.getBomber().setWallPassUsed(true);
     }
 }

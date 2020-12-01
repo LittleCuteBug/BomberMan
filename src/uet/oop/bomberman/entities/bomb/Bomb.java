@@ -28,7 +28,6 @@ public class Bomb extends Entity {
         this.owner = owner;
         this.game = game;
         this.bombLength = owner.getBombLength();
-//        this.bombLength = 2;
         owner.increaseBombCnt();
 
     }

@@ -10,6 +10,6 @@ public class FlamePassItem extends Item {
 
     @Override
     protected void itemUsed() {
-
+        game.getBomber().setFlamePassUsed(true);
     }
 }

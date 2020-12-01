@@ -4,10 +4,7 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
-import uet.oop.bomberman.entities.item.BombItem;
-import uet.oop.bomberman.entities.item.FlameItem;
-import uet.oop.bomberman.entities.item.Item;
-import uet.oop.bomberman.entities.item.SpeedItem;
+import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.entities.movingObject.Bomber;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
@@ -79,6 +76,15 @@ public class Map {
                             break;
                         case 's':
                             item.add(new SpeedItem(i,j,game));
+                            break;
+                        case 'd':
+                            item.add(new BombPassItem(i, j, game));
+                            break;
+                        case 'e':
+                            item.add(new FlamePassItem(i, j, game));
+                            break;
+                        case 'g':
+                            item.add(new WallPassItem(i, j, game));
                             break;
                     }
                 }

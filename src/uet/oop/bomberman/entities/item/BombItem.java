@@ -11,7 +11,6 @@ public class BombItem extends Item {
 
     @Override
     protected void itemUsed() {
-        game.getBomber().increaseBombCnt();
-//        System.out.println("done bomb item");
+        game.getBomber().increaseBombMax();
     }
 }
