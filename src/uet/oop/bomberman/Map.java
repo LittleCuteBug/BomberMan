@@ -57,7 +57,7 @@ public class Map {
                             brick.add(new Brick(i,j));
                             break;
                         case 'x':
-                            portal = new Portal(i,j);
+                            portal = new Portal(i,j, game);
                             game.setPortal(portal);
                             break;
                         case 'p':
@@ -120,7 +120,7 @@ public class Map {
             }
         }
         game.setBomber(new Bomber(1,1,game));
-        game.setPortal(new Portal(WIDTH-2,HEIGHT-2));
+        game.setPortal(new Portal(WIDTH-2,HEIGHT-2, game));
     }
 
 }
