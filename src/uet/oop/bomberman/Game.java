@@ -83,6 +83,10 @@ public class Game {
         return portal;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public void setWIDTH(int WIDTH) {
         this.WIDTH = WIDTH;
         this.gameWIDHT = WIDTH*Sprite.SCALED_SIZE;
@@ -95,6 +99,10 @@ public class Game {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public void increaseLevel() {
+        this.level++;
     }
 
     public void setBomber(Bomber bomber) {
