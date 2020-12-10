@@ -17,6 +17,7 @@ import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.graphics.ViewPoint;
+import uet.oop.bomberman.sounds.Sound;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -157,6 +158,11 @@ public class Game {
         flame.forEach(Entity::update);
         remove();
         updateViewPoint(bomber.getX()*Sprite.SCALED_SIZE, bomber.getY()*Sprite.SCALED_SIZE,stageWidth,stageHeight);
+        if (Sound.ENDING_SOUND.isNotPlay()
+            && Sound.STAGE_START_SOUND.isNotPlay()
+            && Sound.STAGE_THEME_SOUND.isNotPlay()) {
+            Sound.STAGE_THEME_SOUND.play();
+        }
     }
 
     public void render(GraphicsContext gc) {

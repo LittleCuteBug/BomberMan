@@ -13,7 +13,7 @@ public abstract class Entity {
     protected int imgStage = 0;
     private boolean removed = false;
     private boolean dead = false;
-    protected long deadLength = 150;
+    protected long deadLength;
     protected long deadTime = 0;
 
     public Entity(double x, double y, Image img) {
@@ -21,9 +21,9 @@ public abstract class Entity {
         this.y = y;
         this.img = img;
         if( this instanceof MovingEntity ){
-            deadLength = 500;
+            deadLength = 1000;
         } else {
-            deadLength = 150;
+            deadLength = 750;
         }
     }
 

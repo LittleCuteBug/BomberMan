@@ -17,7 +17,7 @@ public class BombermanGame extends Application {
     private Canvas canvas;
     private Game game;
     private final int DEFAULT_WIDTH = 20;
-    private final int DEFAULT_HEIGHT = 8 ;
+    private final int DEFAULT_HEIGHT = 10 ;
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }

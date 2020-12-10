@@ -5,6 +5,7 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.input.Keyboard;
+import uet.oop.bomberman.sounds.Sound;
 
 public class Bomber extends MovingEntity {
     private static final Image[] spriteUp = {Sprite.player_up.getFxImage(),Sprite.player_up_1.getFxImage(),Sprite.player_up_2.getFxImage()};
@@ -114,6 +115,7 @@ public class Bomber extends MovingEntity {
     public void dead() {
         if(!isInvincible()&&!isDead()) {
             //System.out.println("Dead");
+            Sound.LIFE_LOST_SOUND.play();
             super.dead();
         }
     }
