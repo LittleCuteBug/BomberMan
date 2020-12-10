@@ -25,8 +25,7 @@ public class BombermanGame extends Application {
     @Override
     public void start(Stage stage) {
         game = new Game();
-        Map.loadMap("res/levels/Level1_1.txt",game);
-        //createMap();
+        Map.initGame(game);
         // Tao Canvas
 
         canvas = new Canvas(Sprite.SCALED_SIZE * DEFAULT_WIDTH, Sprite.SCALED_SIZE * DEFAULT_HEIGHT);

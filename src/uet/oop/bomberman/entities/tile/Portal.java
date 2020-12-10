@@ -16,7 +16,8 @@ public class Portal extends Entity {
     @Override
     public void update() {
         if (game.getEnemy().size() == 0 && game.getBomber().getX() == x && game.getBomber().getY() == y) {
-            Map.loadMap("res/levels/Level1_1.txt",game);
+            //Map.loadMap("res/levels/Level1_1.txt",game);
+            Map.nextLevel(game);
         }
     }
 }
