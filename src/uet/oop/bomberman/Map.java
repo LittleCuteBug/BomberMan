@@ -177,7 +177,7 @@ public class Map {
             }
         }
         int cntItem = 0;
-        int maxItem = game.getLevel()/3+3;
+        int maxItem = game.getLevel()/3+2;
         while (cntItem<maxItem) {
             Random random = new Random();
             int x = random.nextInt(WIDTH);
@@ -220,9 +220,9 @@ public class Map {
             int y = random.nextInt(HEIGHT);
             if (!cellUsed[x][y]) {
                 int type = 0;
-                if(game.getLevel()>2)
+                if(game.getLevel()>=3)
                     type = random.nextInt(2);
-                else if(game.getLevel()>5)
+                if(game.getLevel()>=5)
                     type = random.nextInt(3);
                 switch (type){
                     case 0:
