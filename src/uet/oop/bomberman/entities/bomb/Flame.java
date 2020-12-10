@@ -8,9 +8,9 @@ import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Flame extends Entity {
-    private Direction direction;
-    private long placeTime;
-    private Game game;
+    private final Direction direction;
+    private final long placeTime;
+    private final Game game;
 
     private static final long timeCountDown = 600;
 
@@ -84,7 +84,7 @@ public class Flame extends Entity {
 
     public void updateObject() {
         for(Entity entity:game.getBrick()) {
-            if(!entity.isRemoved()) {
+            if(!entity.isDead()) {
                 if(Check.touchCheck(x,y,entity)) {
                     entity.dead();
                 }
@@ -92,7 +92,7 @@ public class Flame extends Entity {
         }
 
         for(Entity entity:game.getEnemy()) {
-            if(!entity.isRemoved()) {
+            if(!entity.isDead()) {
                 if(Check.touchCheck(x,y,entity)) {
                     entity.dead();
                 }
@@ -100,7 +100,7 @@ public class Flame extends Entity {
         }
 
         Entity entity = game.getBomber();
-        if(!entity.isRemoved()) {
+        if(!entity.isDead()) {
             if(Check.touchCheck(x,y,entity)  && game.getBomber().isFlamePassUsed()) {
                 entity.dead();
             }
