@@ -1,12 +1,8 @@
 package uet.oop.bomberman;
 
-import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.bomb.Bomb;
-import uet.oop.bomberman.entities.bomb.Flame;
 import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.entities.movingObject.Bomber;
-import uet.oop.bomberman.entities.movingObject.Enemy;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
 import uet.oop.bomberman.entities.movingObject.enemy.Kondoria;
@@ -15,9 +11,9 @@ import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.ItemBrick;
 import uet.oop.bomberman.entities.tile.Portal;
 import uet.oop.bomberman.entities.tile.Wall;
+import uet.oop.bomberman.sounds.Sound;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -188,7 +184,10 @@ public class Map {
             int y = random.nextInt(HEIGHT);
             if (!cellUsed[x][y]) {
                 Item item;
-                switch (random.nextInt(6)){
+                int type = random.nextInt(3);
+                if(game.getLevel()>=5)
+                    type = random.nextInt(6);
+                switch (type){
                     case 0:
                         item = new BombItem(x,y,game);
                         break;
@@ -214,13 +213,18 @@ public class Map {
         }
         List<MovingEntity> enemy = game.getEnemy();
         int cntEnemy = 0;
-        int maxEnemy = game.getLevel()*2+5;
+        int maxEnemy = game.getLevel()*2+3;
         while (cntEnemy<maxEnemy) {
             Random random = new Random();
             int x = random.nextInt(WIDTH);
             int y = random.nextInt(HEIGHT);
             if (!cellUsed[x][y]) {
-                switch (random.nextInt(3)){
+                int type = 0;
+                if(game.getLevel()>2)
+                    type = random.nextInt(2);
+                else if(game.getLevel()>5)
+                    type = random.nextInt(3);
+                switch (type){
                     case 0:
                         enemy.add(new Balloom(x,y,game));
                         break;
@@ -235,5 +239,9 @@ public class Map {
                 cellUsed[x][y]=true;
             }
         }
+        Sound.STAGE_COMPLETE_SOUND.stop();
+        Sound.STAGE_THEME_SOUND.stop();
+        Sound.ENDING_SOUND.stop();
+        Sound.STAGE_START_SOUND.play();
     }
 }
