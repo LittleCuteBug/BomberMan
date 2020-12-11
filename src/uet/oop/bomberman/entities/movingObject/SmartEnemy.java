@@ -62,8 +62,7 @@ public abstract class SmartEnemy extends Enemy{
     protected void updateAction() {
         Direction _direction = smartMove();
         if(!move(_direction)) {
-            _direction = randomDirection();
-            move(_direction);
+            super.updateAction();
         }
     }
 

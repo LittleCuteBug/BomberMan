@@ -10,7 +10,7 @@ public class Kondoria extends Enemy {
     private static final Image[] spriteRight= {Sprite.kondoria_right1.getFxImage(),Sprite.kondoria_right2.getFxImage(),Sprite.kondoria_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.kondoria_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Kondoria(double x, double y, Game game) {
-        super(x, y, game, Kondoria.spriteRight[0], 150, 0, 0,0);
+        super(x, y, game, Kondoria.spriteRight[0], 80, 0, 0,0);
         this.setBrickPassUsed(false);
         this.setBombPassUsed(false);
     }

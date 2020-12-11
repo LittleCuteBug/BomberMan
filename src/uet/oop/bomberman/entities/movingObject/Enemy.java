@@ -5,8 +5,6 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
-import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.Random;
 
@@ -15,6 +13,7 @@ import static uet.oop.bomberman.entities.Check.touchCheck;
 public abstract class Enemy extends MovingEntity {
     protected Enemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
         super(x,y,game,img,timeBetweenMove,bombMax,bombCnt,bombLength);
+        speed = 0.125;
     }
 
     protected boolean canMove(double _x, double _y){
@@ -84,8 +83,11 @@ public abstract class Enemy extends MovingEntity {
     }
 
     protected void updateAction(){
-        Direction _direction = randomDirection();
-        move(_direction);
+        for(int i = 0;i<10;i++) {
+            Direction _direction = randomDirection();
+            if(move(_direction))
+                break;
+        }
     }
 
     protected void updateObject() {
@@ -105,15 +107,15 @@ public abstract class Enemy extends MovingEntity {
             imgStage =  (int) ((System.currentTimeMillis() - deadTime) / (deadLength / 4) % 4);
             img = getSpriteDead(imgStage);
         } else {
-            imgStage = imgStage % 3;
+            imgStage = imgStage % 6;
             switch (direction){
                 case LEFT:
                 case DOWN:
-                    img = getSpriteLeft(imgStage);
+                    img = getSpriteLeft(imgStage/2);
                     break;
                 case RIGHT:
                 case UP:
-                    img = getSpriteRight(imgStage);
+                    img = getSpriteRight(imgStage/2);
                     break;
             }
         }

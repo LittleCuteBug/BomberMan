@@ -10,7 +10,7 @@ public class Balloom extends Enemy {
     private static final Image[] spriteRight= {Sprite.balloom_right1.getFxImage(),Sprite.balloom_right2.getFxImage(),Sprite.balloom_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.balloom_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Balloom(double x, double y, Game game) {
-        super(x, y, game, Balloom.spriteRight[0], 150, 0, 0,0);
+        super(x, y, game, Balloom.spriteRight[0], 70, 0, 0,0);
     }
 
     protected Image getSpriteLeft(int imgStage){

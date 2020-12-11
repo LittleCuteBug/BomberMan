@@ -15,7 +15,7 @@ public class Oneal extends SmartEnemy {
     private static final Image[] spriteRight= {Sprite.oneal_right1.getFxImage(),Sprite.oneal_right2.getFxImage(),Sprite.oneal_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.oneal_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Oneal(double x, double y, Game game) {
-        super(x, y, game, Oneal.spriteRight[0], 150, 0, 0,0);
+        super(x, y, game, Oneal.spriteRight[0], 75, 0, 0,0);
     }
 
     protected Image getSpriteLeft(int imgStage){
