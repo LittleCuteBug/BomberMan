@@ -8,6 +8,7 @@ import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sounds.Sound;
 
 import static java.lang.Math.abs;
 import static uet.oop.bomberman.entities.Check.touchCheck;
@@ -141,6 +142,7 @@ public class Bomb extends Entity {
 
     public void explode(){
         owner.decreaseBombCnt();
+        new Sound(Sound.EXPLOSION, false).play();
         flameOfBomb();
         this.remove();
     }

@@ -6,6 +6,7 @@ import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
+import uet.oop.bomberman.sounds.Sound;
 
 import static uet.oop.bomberman.entities.Check.touchCheck;
 
@@ -189,6 +190,7 @@ public abstract class MovingEntity extends Entity {
     protected void placeBomb() {
         if (canPlaceBomb(Math.round(x), Math.round(y))) {
             lastTimePlaceBomb = System.currentTimeMillis();
+            new Sound(Sound.PLACE_BOMB, false).play();
             game.getBomb().add(new Bomb((int) Math.round(x), (int) Math.round(y), this,this.game));
         }
     }

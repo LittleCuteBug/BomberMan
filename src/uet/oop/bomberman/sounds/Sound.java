@@ -20,10 +20,6 @@ public class Sound {
     public static final Sound INVINCIBILITY_SOUND = new Sound(Sound.INVINCIBILITY,true);
     public static final Sound LIFE_LOST_SOUND = new Sound(Sound.LIFE_LOST,false);
     public static final Sound ENDING_SOUND = new Sound(Sound.ENDING,true);
-    public static final Sound POWERED_UP_SOUND = new Sound(Sound.POWERED_UP,false);
-    public static final Sound EXPLOSION_SOUND = new Sound(Sound.EXPLOSION, false);
-    public static final Sound PLACE_BOMB_SOUND = new Sound(Sound.PLACE_BOMB, false);
-
 
     private Boolean loop;
     private Clip clip;
