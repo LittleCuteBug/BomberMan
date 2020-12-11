@@ -5,56 +5,56 @@ import java.util.Queue;
 
 public class FindPath {
     private static class Pair{
-        public int x; public int y;
+        public int fi; public int se;
 
-        public Pair(int x, int y) {
-            this.x = x;
-            this.y = y;
+        public Pair(int fi, int se) {
+            this.fi = fi;
+            this.se = se;
         }
     }
     private static final int[] tx = {1,-1,0,0};
     private static final int[] ty = {0,0,1,-1};
 
-    public static Direction getDirection(int[][] map, int radios, int yStart, int xStart, int yEnd, int xEnd){
+    public static Direction getDirection(int[][] map, int radios, int xStart, int yStart, int xEnd, int yEnd){
         Queue<Pair> queue = new LinkedList<Pair>();
-        queue.add(new Pair(xStart,yStart));
-        map[xStart][yStart] = 1;
+        queue.add(new Pair(yStart,xStart));
+        map[yStart][xStart] = 1;
         while (!queue.isEmpty())
         {
             Pair pair = queue.remove();
             for(int i=0;i<4;i++) {
-                if(pair.x + tx[i]>=0&&pair.x + tx[i]<=radios*2&&pair.y + ty[i]>=0&&pair.y + ty[i]<=radios*2){
-                    if (map[pair.x + tx[i]][pair.y + ty[i]] == 0) {
-                        map[pair.x + tx[i]][pair.y + ty[i]] = i+2;
-                        queue.add(new Pair(pair.x + tx[i], pair.y + ty[i]));
+                if(pair.fi + ty[i]>=0&&pair.fi + ty[i]<=radios*2&&pair.se + tx[i]>=0&&pair.se + tx[i]<=radios*2){
+                    if (map[pair.fi + ty[i]][pair.se + tx[i]] == 0) {
+                        map[pair.fi + ty[i]][pair.se + tx[i]] = i+2;
+                        queue.add(new Pair(pair.fi + ty[i], pair.se + tx[i]));
                     }
                 }
             }
         }
 
-        if(map[xEnd][yEnd]==0)
+        if(map[yEnd][xEnd]==0)
             return null;
 
-        queue.add(new Pair(xEnd,yEnd));
+        queue.add(new Pair(yEnd,xEnd));
         while(!queue.isEmpty()){
             Pair pair = queue.remove();
-            int i = map[pair.x][pair.y]-2;
+            int i = map[pair.fi][pair.se]-2;
             if(i<0) break;
-            queue.add(new Pair(pair.x - tx[i],pair.y - ty[i]));
-            map[pair.x][pair.y] = 6;
+            queue.add(new Pair(pair.fi - ty[i],pair.se - tx[i]));
+            map[pair.fi][pair.se] = 6;
         }
 
-        if(xStart>0&&map[xStart-1][yStart]==6) {
-            return Direction.UP;
-        }
-        if(xStart<radios*2&&map[xStart+1][yStart]==6) {
-            return Direction.DOWN;
-        }
-        if(yStart>0&&map[xStart][yStart-1]==6) {
+        if(xStart>0&&map[yStart][xStart-1]==6) {
             return Direction.LEFT;
         }
-        if(yStart<radios*2&&map[xStart][yStart+1]==6) {
+        if(xStart<radios*2&&map[yStart][xStart+1]==6) {
             return Direction.RIGHT;
+        }
+        if(yStart>0&&map[yStart-1][xStart]==6) {
+            return Direction.UP;
+        }
+        if(yStart<radios*2&&map[yStart+1][xStart]==6) {
+            return Direction.DOWN;
         }
         return null;
     }

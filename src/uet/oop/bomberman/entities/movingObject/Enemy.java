@@ -25,31 +25,67 @@ public abstract class Enemy extends MovingEntity {
         }
         return super.canMove(_x,_y);
     }
-    protected void updateAction(){
+
+    protected Direction randomDirection() {
         Random generator = new Random();
         Direction rand = Direction.values()[generator.nextInt(4)];
+        Direction _direction = null;
         switch (rand) {
             case UP:
                 if(!canMoveDown() || direction!= Direction.DOWN)
-                    if(canMoveUp())
-                        moveUp();
+                    _direction = Direction.UP;
                 break;
             case DOWN:
                 if(!canMoveUp()||direction!=Direction.UP)
-                    if(canMoveDown())
-                        moveDown();
-                break;
-            case RIGHT:
-                if(!canMoveRight()||direction!=Direction.RIGHT)
-                    if(canMoveLeft())
-                        moveLeft();
+                    _direction = Direction.DOWN;
                 break;
             case LEFT:
+                if(!canMoveRight()||direction!=Direction.RIGHT)
+                    _direction = Direction.LEFT;
+                break;
+            case RIGHT:
                 if(!canMoveLeft()||direction!=Direction.LEFT)
-                    if(canMoveRight())
-                        moveRight();
+                    _direction = Direction.RIGHT;
                 break;
         }
+        return  _direction;
+    }
+
+    protected boolean move(Direction _direction){
+        if(_direction == null)
+            return false;
+        switch (_direction) {
+            case UP:
+                if(canMoveUp()) {
+                    moveUp();
+                    return true;
+                }
+                break;
+            case DOWN:
+                if(canMoveDown()) {
+                    moveDown();
+                    return true;
+                }
+                break;
+            case RIGHT:
+                if (canMoveRight()) {
+                    moveRight();
+                    return true;
+                }
+                break;
+            case LEFT:
+                if (canMoveLeft()) {
+                    moveLeft();
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
+    protected void updateAction(){
+        Direction _direction = randomDirection();
+        move(_direction);
     }
 
     protected void updateObject() {
