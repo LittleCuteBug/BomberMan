@@ -11,6 +11,8 @@ public class Sound {
     public static final String LIFE_LOST = "res/sound/08_LifeLost.wav";
     public static final String ENDING = "res/sound/10_Ending.wav";
     public static final String POWERED_UP = "res/sound/11_PoweredUp.wav";
+    public static final String EXPLOSION = "res/sound/12_Explosion.wav";
+    public static final String PLACE_BOMB = "res/sound/13_PlaceBomb.wav";
 
     public static final Sound STAGE_START_SOUND =  new Sound(Sound.STAGE_START,false);
     public static final Sound STAGE_THEME_SOUND = new Sound(Sound.STAGE_THEME,true);
@@ -19,6 +21,9 @@ public class Sound {
     public static final Sound LIFE_LOST_SOUND = new Sound(Sound.LIFE_LOST,false);
     public static final Sound ENDING_SOUND = new Sound(Sound.ENDING,true);
     public static final Sound POWERED_UP_SOUND = new Sound(Sound.POWERED_UP,false);
+    public static final Sound EXPLOSION_SOUND = new Sound(Sound.EXPLOSION, false);
+    public static final Sound PLACE_BOMB_SOUND = new Sound(Sound.PLACE_BOMB, false);
+
 
     private Boolean loop;
     private Clip clip;
