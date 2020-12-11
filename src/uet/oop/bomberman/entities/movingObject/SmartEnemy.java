@@ -17,9 +17,11 @@ public abstract class SmartEnemy extends Enemy{
 
     private int[][] getMap(int radios) {
         int[][] map = new int[radios*2+1][radios*2+1];
-        for (Entity entity: game.getBrick()) {
-            if(Check.getDistance(x,y,entity)<=radios){
-                map[(int) (radios+entity.getY()-y)][(int) (radios+entity.getX()-x)] = 1;
+        if(!brickPassUsed) {
+            for (Entity entity: game.getBrick()) {
+                if(Check.getDistance(x,y,entity)<=radios){
+                    map[(int) (radios+entity.getY()-y)][(int) (radios+entity.getX()-x)] = 1;
+                }
             }
         }
         for (Entity entity: game.getWall()) {
