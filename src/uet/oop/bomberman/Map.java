@@ -183,7 +183,7 @@ public class Map {
             if (!cellUsed[x][y]) {
                 Item item;
                 int type = random.nextInt(3);
-                if(game.getLevel()>=3)
+                if(game.getLevel()>=4)
                     type = random.nextInt(6);
                 switch (type){
                     case 0:

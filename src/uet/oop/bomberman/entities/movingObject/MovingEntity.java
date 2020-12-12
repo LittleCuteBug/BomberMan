@@ -64,8 +64,11 @@ public abstract class MovingEntity extends Entity {
         }
         for (Bomb bomb: game.getBomb()){
             if(bomb.isByPass()||bomb.getOwner()!=this) {
-                if (touchCheck(_x, _y, bomb) && (!bombPassUsed || (this instanceof Enemy && bomb.getOwner() instanceof Bomber))) {
-                    return false;
+                if (touchCheck(_x, _y, bomb) &&
+                    (!bombPassUsed || (this instanceof Enemy && bomb.getOwner() instanceof Bomber)
+                            || (this instanceof Bomber && bomb.getOwner() instanceof Enemy)))
+                {
+                        return false;
                 }
             }
         }
