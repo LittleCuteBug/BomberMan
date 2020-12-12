@@ -11,8 +11,8 @@ import java.util.Random;
 import static uet.oop.bomberman.entities.Check.touchCheck;
 
 public abstract class Enemy extends MovingEntity {
-    protected Enemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
-        super(x,y,game,img,timeBetweenMove,bombMax,bombCnt,bombLength);
+    protected Enemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombLength) {
+        super(x,y,game,img,timeBetweenMove,bombMax,bombLength);
         speed = 0.125;
     }
 

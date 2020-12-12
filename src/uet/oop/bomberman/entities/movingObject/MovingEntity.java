@@ -25,11 +25,11 @@ public abstract class MovingEntity extends Entity {
     protected boolean brickPassUsed = false;
     protected Game game;
 
-    protected MovingEntity(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
+    protected MovingEntity(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombLength) {
         super(x, y, img);
         this.timeBetweenMove = timeBetweenMove;
         this.bombMax = bombMax;
-        this.bombCnt = bombCnt;
+        this.bombCnt = 0;
         this.bombLength = bombLength;
         this.game = game;
         this.lastTimeMove = System.currentTimeMillis();

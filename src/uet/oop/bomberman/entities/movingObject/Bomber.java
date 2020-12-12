@@ -16,10 +16,10 @@ public class Bomber extends MovingEntity {
 
     private int life;
     private long invincibleStart = System.currentTimeMillis();
-    private long invincibleLength = 1000;
+    private final long invincibleLength = 1000;
 
     public Bomber(double x, double y, Game game) {
-        super(x, y, game, Bomber.spriteRight[0], 70, 5, 0, 1);
+        super(x, y, game, Bomber.spriteRight[0], 70, 1, 1);
     }
 
     protected boolean canMoveUpRight() {
@@ -114,7 +114,6 @@ public class Bomber extends MovingEntity {
     @Override
     public void dead() {
         if(!isInvincible()&&!isDead()) {
-            //System.out.println("Dead");
             Sound.LIFE_LOST_SOUND.play();
             super.dead();
         }

@@ -12,7 +12,7 @@ public class Pontan extends SmartEnemy {
     private static final Image[] spriteRight= {Sprite.pontan_right1.getFxImage(),Sprite.pontan_right2.getFxImage(),Sprite.pontan_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.pontan_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Pontan(double x, double y, Game game) {
-        super(x, y, game, Pontan.spriteRight[0], 80, 2, 0,1,3);
+        super(x, y, game, Pontan.spriteRight[0], 80, 2, 0,3);
         timeBetweenPlaceBomb = 1000;
         setBombPassUsed();
         setFlamePassUsed();

@@ -8,8 +8,8 @@ import uet.oop.bomberman.entities.Entity;
 
 public abstract class SmartEnemy extends Enemy{
     protected int radios;
-    protected SmartEnemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength, int radios) {
-        super(x, y, game, img, timeBetweenMove, bombMax, bombCnt, bombLength);
+    protected SmartEnemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombLength, int radios) {
+        super(x, y, game, img, timeBetweenMove, bombMax, bombLength);
         this.radios = radios;
     }
 

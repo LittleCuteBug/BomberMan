@@ -13,7 +13,7 @@ public class Pass extends Enemy {
     private static final Image[] spriteRight= {Sprite.pass_right1.getFxImage(),Sprite.pass_right2.getFxImage(),Sprite.pass_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.pass_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Pass(double x, double y, Game game) {
-        super(x, y, game, Pass.spriteRight[0], 110, 2, 0,1);
+        super(x, y, game, Pass.spriteRight[0], 110, 2,1);
         timeBetweenPlaceBomb = 1000;
         setBombPassUsed();
         setFlamePassUsed();

@@ -12,7 +12,7 @@ public class Doll extends Enemy {
     private static final Image[] spriteRight= {Sprite.doll_right1.getFxImage(),Sprite.doll_right2.getFxImage(),Sprite.doll_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.doll_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Doll(double x, double y, Game game) {
-        super(x, y, game, Doll.spriteRight[0], 80, 2, 0,1);
+        super(x, y, game, Doll.spriteRight[0], 80, 2,1);
         timeBetweenPlaceBomb = 1000;
         setBombPassUsed();
         setFlamePassUsed();
