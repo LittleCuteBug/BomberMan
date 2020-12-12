@@ -10,8 +10,8 @@ public class Ovapi extends SmartEnemy {
     private static final Image[] spriteRight= {Sprite.ovapi_right1.getFxImage(),Sprite.ovapi_right2.getFxImage(),Sprite.ovapi_right3.getFxImage()};
     private static final Image[] spriteDead = {Sprite.ovapi_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Ovapi(double x, double y, Game game) {
-        super(x, y, game, Ovapi.spriteRight[0], 80, 0, 0,0);
-        this.setBrickPassUsed(false);
+        super(x, y, game, Ovapi.spriteRight[0], 80, 0, 0,0,3);
+        this.setBrickPassUsed();
     }
 
     protected Image getSpriteLeft(int imgStage){

@@ -7,8 +7,10 @@ import uet.oop.bomberman.entities.Direction;
 import uet.oop.bomberman.entities.Entity;
 
 public abstract class SmartEnemy extends Enemy{
-    protected SmartEnemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
+    protected int radios;
+    protected SmartEnemy(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength, int radios) {
         super(x, y, game, img, timeBetweenMove, bombMax, bombCnt, bombLength);
+        this.radios = radios;
     }
 
     abstract protected Image getSpriteLeft(int imgStage);
@@ -44,8 +46,6 @@ public abstract class SmartEnemy extends Enemy{
 
 
     private Direction smartMove(){
-        int radios = 5;
-
         if(Check.getDistance(x,y,game.getBomber())>radios)
             return null;
         if(x!=Math.round(x)||y!=Math.round(y)){

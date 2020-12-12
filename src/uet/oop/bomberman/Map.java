@@ -4,9 +4,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.entities.movingObject.Bomber;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
-import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
-import uet.oop.bomberman.entities.movingObject.enemy.Kondoria;
-import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
+import uet.oop.bomberman.entities.movingObject.enemy.*;
 import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.ItemBrick;
 import uet.oop.bomberman.entities.tile.Portal;
@@ -219,11 +217,7 @@ public class Map {
             int x = random.nextInt(WIDTH);
             int y = random.nextInt(HEIGHT);
             if (!cellUsed[x][y]) {
-                int type = 0;
-                if(game.getLevel()>=3)
-                    type = random.nextInt(2);
-                if(game.getLevel()>=5)
-                    type = random.nextInt(3);
+                int type = random.nextInt(Math.min(game.getLevel()+1,5));
                 switch (type){
                     case 0:
                         enemy.add(new Balloom(x,y,game));
@@ -232,7 +226,13 @@ public class Map {
                         enemy.add(new Oneal(x,y,game));
                         break;
                     case 2:
+                        enemy.add(new Doll(x,y, game));
+                        break;
+                    case 3:
                         enemy.add(new Kondoria(x,y, game));
+                        break;
+                    case 4:
+                        enemy.add(new Ovapi(x,y, game));
                         break;
                 }
                 cntEnemy++;

@@ -12,6 +12,6 @@ public class BombPassItem extends Item {
 
     @Override
     protected void itemUsed() {
-        game.getBomber().setBombPassUsed(false);
+        game.getBomber().setBombPassUsed();
     }
 }

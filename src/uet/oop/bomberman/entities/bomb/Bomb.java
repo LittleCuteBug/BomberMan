@@ -105,38 +105,38 @@ public class Bomb extends Entity {
         long flamePlaceTime = System.currentTimeMillis();
         int _x = (int) x;
         int _y = (int) y;
-        game.getFlame().add(new Flame(_x, _y,flamePlaceTime, Direction.CENTER, game));
+        game.getFlame().add(new Flame(_x, _y,flamePlaceTime, Direction.CENTER, game, owner));
 
         int fLeft = flameToLeft(_x, _y);
         if (fLeft >= 1) {
             for (int i = 1; i < fLeft; ++i) {
-                game.getFlame().add(new Flame(_x - i, _y, flamePlaceTime, Direction.HORIZONTAL, game));
+                game.getFlame().add(new Flame(_x - i, _y, flamePlaceTime, Direction.HORIZONTAL, game, owner));
             }
-            game.getFlame().add(new Flame(_x - fLeft, _y, flamePlaceTime, Direction.LEFT, game));
+            game.getFlame().add(new Flame(_x - fLeft, _y, flamePlaceTime, Direction.LEFT, game, owner));
         }
 
         int fRight = flameToRight(_x, _y);
         if (fRight >= 1) {
             for (int i = 1; i < fRight; ++i) {
-                game.getFlame().add(new Flame(_x + i, _y, flamePlaceTime, Direction.HORIZONTAL, game));
+                game.getFlame().add(new Flame(_x + i, _y, flamePlaceTime, Direction.HORIZONTAL, game, owner));
             }
-            game.getFlame().add(new Flame(_x + fRight, _y, flamePlaceTime, Direction.RIGHT, game));
+            game.getFlame().add(new Flame(_x + fRight, _y, flamePlaceTime, Direction.RIGHT, game, owner));
         }
 
         int fUp = flameToTop(_x, _y);
         if (fUp >= 1) {
             for (int i = 1; i < fUp; ++i) {
-                game.getFlame().add(new Flame(_x, _y - i, flamePlaceTime, Direction.VERTICAL, game));
+                game.getFlame().add(new Flame(_x, _y - i, flamePlaceTime, Direction.VERTICAL, game, owner));
             }
-            game.getFlame().add(new Flame(_x, _y - fUp, flamePlaceTime, Direction.UP, game));
+            game.getFlame().add(new Flame(_x, _y - fUp, flamePlaceTime, Direction.UP, game, owner));
         }
 
         int fDown = flameToBottom(_x, _y);
         if (fDown >= 1) {
             for (int i = 1; i < fDown; ++i) {
-                game.getFlame().add(new Flame(_x, _y + i, flamePlaceTime, Direction.VERTICAL, game));
+                game.getFlame().add(new Flame(_x, _y + i, flamePlaceTime, Direction.VERTICAL, game, owner));
             }
-            game.getFlame().add(new Flame(_x, _y + fDown, flamePlaceTime, Direction.DOWN, game));
+            game.getFlame().add(new Flame(_x, _y + fDown, flamePlaceTime, Direction.DOWN, game, owner));
         }
     }
 

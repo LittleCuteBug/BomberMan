@@ -11,8 +11,8 @@ public class Kondoria extends Enemy {
     private static final Image[] spriteDead = {Sprite.kondoria_dead.getFxImage(),Sprite.mob_dead1.getFxImage(),Sprite.mob_dead2.getFxImage(),Sprite.mob_dead3.getFxImage()};
     public Kondoria(double x, double y, Game game) {
         super(x, y, game, Kondoria.spriteRight[0], 100, 0, 0,0);
-        this.setBrickPassUsed(false);
-        this.setBombPassUsed(false);
+        this.setBrickPassUsed();
+        this.setBombPassUsed();
     }
 
     protected Image getSpriteLeft(int imgStage){

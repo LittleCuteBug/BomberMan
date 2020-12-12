@@ -20,9 +20,9 @@ public abstract class MovingEntity extends Entity {
     protected int bombMax;
     protected int bombCnt;
     protected int bombLength;
-    protected boolean bombPassUsed = true;
-    protected boolean flamePassUsed = true;
-    protected boolean brickPassUsed = true;
+    protected boolean bombPassUsed = false;
+    protected boolean flamePassUsed = false;
+    protected boolean brickPassUsed = false;
     protected Game game;
 
     protected MovingEntity(double x, double y, Game game, Image img, long timeBetweenMove, int bombMax, int bombCnt, int bombLength) {
@@ -40,16 +40,16 @@ public abstract class MovingEntity extends Entity {
         return flamePassUsed;
     }
 
-    public void setBombPassUsed(boolean bombPassUsed) {
-        this.bombPassUsed = bombPassUsed;
+    public void setBombPassUsed() {
+        bombPassUsed = true;
     }
 
-    public void setFlamePassUsed(boolean flamePassUsed) {
-        this.flamePassUsed = flamePassUsed;
+    public void setFlamePassUsed() {
+        flamePassUsed = true;
     }
 
-    public void setBrickPassUsed(boolean wallPassUsed) {
-        this.brickPassUsed = wallPassUsed;
+    public void setBrickPassUsed() {
+        brickPassUsed = true;
     }
 
     protected boolean canMove(double _x, double _y)
@@ -58,19 +58,19 @@ public abstract class MovingEntity extends Entity {
             return false;
         }
         for (Flame flame: game.getFlame()){
-            if (touchCheck(_x, _y, flame) && flamePassUsed) {
+            if (touchCheck(_x, _y, flame) && (!flamePassUsed || (this instanceof Enemy && flame.getOwner() instanceof Bomber))) {
                 return false;
             }
         }
         for (Bomb bomb: game.getBomb()){
             if(bomb.isByPass()||bomb.getOwner()!=this) {
-                if (touchCheck(_x, _y, bomb) && bombPassUsed) {
+                if (touchCheck(_x, _y, bomb) && (!bombPassUsed || (this instanceof Enemy && bomb.getOwner() instanceof Bomber))) {
                     return false;
                 }
             }
         }
         for (Entity entity : game.getBrick()) {
-            if (touchCheck(_x, _y, entity) && brickPassUsed) {
+            if (touchCheck(_x, _y, entity) && !brickPassUsed) {
                 return false;
             }
         }
@@ -175,12 +175,24 @@ public abstract class MovingEntity extends Entity {
                 return false;
             }
         }
+        Bomber bomber = game.getBomber();
+        if(bomber!= this && touchCheck(_x,_y,bomber))
+            return false;
+
         for (Entity entity : game.getEnemy()) {
+            if(entity!=this)
+            {
+                if (touchCheck(_x, _y, entity)) {
+                    return false;
+                }
+            }
+        }
+        for (Entity entity : game.getBomb() ) {
             if (touchCheck(_x, _y, entity)) {
                 return false;
             }
         }
-        for (Entity entity : game.getBomb() ) {
+        for (Entity entity : game.getFlame() ) {
             if (touchCheck(_x, _y, entity)) {
                 return false;
             }

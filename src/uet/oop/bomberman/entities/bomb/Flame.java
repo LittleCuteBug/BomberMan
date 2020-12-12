@@ -5,12 +5,16 @@ import uet.oop.bomberman.Game;
 import uet.oop.bomberman.entities.Check;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Direction;
+import uet.oop.bomberman.entities.movingObject.Bomber;
+import uet.oop.bomberman.entities.movingObject.Enemy;
+import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Flame extends Entity {
     private final Direction direction;
     private final long placeTime;
     private final Game game;
+    private final MovingEntity owner;
 
     private static final long timeCountDown = 600;
 
@@ -32,11 +36,16 @@ public class Flame extends Entity {
 
     private static final Image[] spriteVertical = {Sprite.explosion_vertical.getFxImage(),Sprite.explosion_vertical1.getFxImage(),Sprite.explosion_vertical2.getFxImage()};
 
-    public Flame(int x, int y, long placeTime, Direction direction, Game game) {
+    public Flame(int x, int y, long placeTime, Direction direction, Game game, MovingEntity owner) {
         super(x, y, Sprite.bomb_exploded.getFxImage());
         this.direction = direction;
         this.placeTime = placeTime;
         this.game = game;
+        this.owner = owner;
+    }
+
+    public MovingEntity getOwner() {
+        return owner;
     }
 
     public void updateImage() {
@@ -90,19 +99,19 @@ public class Flame extends Entity {
                 }
             }
         }
-
-        for(Entity entity:game.getEnemy()) {
-            if(!entity.isDead()) {
-                if(Check.touchCheck(x,y,entity)) {
-                    entity.dead();
+        if(owner instanceof Bomber)
+            for(Entity entity:game.getEnemy()) {
+                if(!entity.isDead()) {
+                    if(Check.touchCheck(x,y,entity)) {
+                        entity.dead();
+                    }
                 }
             }
-        }
 
-        Entity entity = game.getBomber();
-        if(!entity.isDead()) {
-            if(Check.touchCheck(x,y,entity)  && game.getBomber().isFlamePassUsed()) {
-                entity.dead();
+        Bomber bomber = game.getBomber();
+        if(!bomber.isDead()) {
+            if(Check.touchCheck(x,y,bomber)  && !(bomber.isFlamePassUsed() && owner==bomber)) {
+                bomber.dead();
             }
         }
     }
