@@ -217,7 +217,7 @@ public class Map {
             int x = random.nextInt(WIDTH);
             int y = random.nextInt(HEIGHT);
             if (!cellUsed[x][y]) {
-                int type = random.nextInt(Math.min(game.getLevel()+1,7));
+                int type = random.nextInt(Math.min(game.getLevel()+1,8));
                 switch (type){
                     case 0:
                         enemy.add(new Balloom(x,y,game));
@@ -239,6 +239,9 @@ public class Map {
                         break;
                     case 6:
                         enemy.add(new Pass(x,y, game));
+                        break;
+                    case 7:
+                        enemy.add(new Pontan(x,y,game));
                         break;
                 }
                 cntEnemy++;
