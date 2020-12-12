@@ -19,7 +19,7 @@ public class Bomber extends MovingEntity {
     private final long invincibleLength = 1000;
 
     public Bomber(double x, double y, Game game) {
-        super(x, y, game, Bomber.spriteRight[0], 70, 1, 1);
+        super(x, y, game, Bomber.spriteRight[0], 70, 2, 1);
     }
 
     protected boolean canMoveUpRight() {
@@ -123,6 +123,7 @@ public class Bomber extends MovingEntity {
         x=1;
         y=1;
         img = Bomber.spriteRight[0];
+        bombCnt = 0;
         direction = Direction.RIGHT;
         invincibleStart = System.currentTimeMillis();
         super.reborn();

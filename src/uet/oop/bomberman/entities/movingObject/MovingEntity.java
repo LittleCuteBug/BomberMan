@@ -91,7 +91,9 @@ public abstract class MovingEntity extends Entity {
     }
 
     public void increaseSpeed() {
-        timeBetweenMove /= 1.2;
+        //if(timeBetweenMove>50)
+        timeBetweenMove = Math.max(40, (long) (timeBetweenMove/1.1));
+        System.out.println(timeBetweenMove);
     }
 
     protected boolean canMoveUp() {
