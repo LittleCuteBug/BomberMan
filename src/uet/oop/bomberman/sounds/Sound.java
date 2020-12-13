@@ -10,8 +10,8 @@ public class Sound {
     public static final String INVINCIBILITY = "res/sound/07_Invincibility.wav";
     public static final String LIFE_LOST = "res/sound/08_LifeLost.wav";
     public static final String ENDING = "res/sound/10_Ending.wav";
-    public static final String POWERED_UP = "res/sound/11_PoweredUp.wav";
-    public static final String EXPLOSION = "res/sound/12_Explosion.wav";
+    public static final String ITEM_USED = "res/sound/14_ItemUsed.wav";
+    public static final String EXPLOSION = "res/sound/15_ExplosionDec.wav";
     public static final String PLACE_BOMB = "res/sound/13_PlaceBomb.wav";
 
     public static final Sound STAGE_START_SOUND =  new Sound(Sound.STAGE_START,false);
@@ -20,6 +20,7 @@ public class Sound {
     public static final Sound INVINCIBILITY_SOUND = new Sound(Sound.INVINCIBILITY,true);
     public static final Sound LIFE_LOST_SOUND = new Sound(Sound.LIFE_LOST,false);
     public static final Sound ENDING_SOUND = new Sound(Sound.ENDING,true);
+    public static final Sound ITEM_USED_SOUND = new Sound(Sound.ITEM_USED,false);
 
     private Boolean loop;
     private Clip clip;

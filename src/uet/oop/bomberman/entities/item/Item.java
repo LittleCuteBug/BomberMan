@@ -17,9 +17,9 @@ public abstract class Item extends Entity {
     protected abstract void itemUsed();
 
     public void update() {
-        // kiểm tra nếu chạm bomber thì gọi hàm itemUsed rồi remove
         if (overlapCheck(x, y, game.getBomber())) {
             itemUsed();
+            Sound.ITEM_USED_SOUND.play();
             this.remove();
         }
 
