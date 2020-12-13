@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import uet.oop.bomberman.graphics.Sprite;
@@ -24,7 +25,9 @@ public class BombermanGame extends Application {
 
     @Override
     public void start(Stage stage) {
+
         game = new Game();
+        stage.setTitle("Bomberman - Team 8");
         Map.initGame(game);
         // Tao Canvas
 
