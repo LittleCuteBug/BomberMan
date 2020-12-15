@@ -169,7 +169,9 @@ public class Map {
             int x = random.nextInt(WIDTH);
             int y = random.nextInt(HEIGHT);
             if(!cellUsed[x][y]) {
+
                 game.setPortal(new Portal(x, y,game));
+                brick.add(new Brick(x, y));
                 cellUsed[x][y] = true;
                 break;
             }
