@@ -58,7 +58,10 @@ public abstract class MovingEntity extends Entity {
             return false;
         }
         for (Flame flame: game.getFlame()){
-            if (touchCheck(_x, _y, flame) && (!flamePassUsed || (this instanceof Enemy && flame.getOwner() instanceof Bomber))) {
+            if (touchCheck(_x, _y, flame)
+                    && (!flamePassUsed || (this instanceof Enemy && flame.getOwner() instanceof Bomber))
+                    && !(this instanceof Enemy && flame.getOwner() instanceof Enemy)
+            ) {
                 return false;
             }
         }
