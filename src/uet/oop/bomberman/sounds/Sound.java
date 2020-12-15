@@ -1,18 +1,21 @@
 package uet.oop.bomberman.sounds;
+import uet.oop.bomberman.graphics.SpriteSheet;
+
 import java.io.*;
 import java.net.Socket;
+import java.net.URL;
 import javax.sound.sampled.*;
 
 public class Sound {
-    public static final String STAGE_START = "res/sound/02_StageStart.wav";
-    public static final String STAGE_THEME = "res/sound/03_StageTheme.wav";
-    public static final String STAGE_COMPLETE = "res/sound/05_StageComplete.wav";
-    public static final String INVINCIBILITY = "res/sound/07_Invincibility.wav";
-    public static final String LIFE_LOST = "res/sound/08_LifeLost.wav";
-    public static final String ENDING = "res/sound/10_Ending.wav";
-    public static final String ITEM_USED = "res/sound/14_ItemUsed.wav";
-    public static final String EXPLOSION = "res/sound/15_ExplosionDec.wav";
-    public static final String PLACE_BOMB = "res/sound/13_PlaceBomb.wav";
+    public static final String STAGE_START = "/sound/02_StageStart.wav";
+    public static final String STAGE_THEME = "/sound/03_StageTheme.wav";
+    public static final String STAGE_COMPLETE = "/sound/05_StageComplete.wav";
+    public static final String INVINCIBILITY = "/sound/07_Invincibility.wav";
+    public static final String LIFE_LOST = "/sound/08_LifeLost.wav";
+    public static final String ENDING = "/sound/10_Ending.wav";
+    public static final String ITEM_USED = "/sound/14_ItemUsed.wav";
+    public static final String EXPLOSION = "/sound/15_ExplosionDec.wav";
+    public static final String PLACE_BOMB = "/sound/13_PlaceBomb.wav";
 
     public static final Sound STAGE_START_SOUND =  new Sound(Sound.STAGE_START,false);
     public static final Sound STAGE_THEME_SOUND = new Sound(Sound.STAGE_THEME,true);
@@ -32,8 +35,8 @@ public class Sound {
 
     public Sound(String soundFileName, Boolean loop) {
         try {
-            File file = new File(soundFileName);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
+            URL url = Sound.class.getResource(soundFileName);
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             this.loop = loop;
