@@ -21,6 +21,7 @@ public class Portal extends Entity {
             if (Sound.ENDING_SOUND.isNotPlay()) {
                 Sound.ENDING_SOUND.play();
                 Sound.STAGE_THEME_SOUND.stop();
+                Sound.INVINCIBILITY_SOUND.stop();
                 //System.out.println("start exit");
             }
             if (Check.overlapCheck(x,y,game.getBomber())) {

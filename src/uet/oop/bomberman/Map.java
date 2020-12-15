@@ -248,6 +248,7 @@ public class Map {
         }
         Sound.STAGE_COMPLETE_SOUND.stop();
         Sound.STAGE_THEME_SOUND.stop();
+        Sound.INVINCIBILITY_SOUND.stop();
         Sound.ENDING_SOUND.stop();
         Sound.STAGE_START_SOUND.play();
     }

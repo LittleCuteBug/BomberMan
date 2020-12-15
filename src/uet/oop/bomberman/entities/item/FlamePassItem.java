@@ -13,9 +13,6 @@ public class FlamePassItem extends Item {
 
     @Override
     protected void itemUsed() {
-//        if (Sound.ENDING_SOUND.isNotPlay()) {
-//            Sound.INVINCIBILITY_SOUND.play();
-//        }
         game.getBomber().setFlamePassUsed();
     }
 }

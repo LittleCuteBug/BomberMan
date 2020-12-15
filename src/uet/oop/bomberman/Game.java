@@ -152,7 +152,10 @@ public class Game {
         if (Sound.ENDING_SOUND.isNotPlay()
             && Sound.STAGE_START_SOUND.isNotPlay()
             && Sound.STAGE_THEME_SOUND.isNotPlay()) {
-            Sound.STAGE_THEME_SOUND.play();
+            if(bomber.isFlamePassUsed())
+                Sound.INVINCIBILITY_SOUND.play();
+            else
+                Sound.STAGE_THEME_SOUND.play();
         }
     }
 
