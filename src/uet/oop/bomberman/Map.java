@@ -5,10 +5,7 @@ import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.entities.movingObject.Bomber;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
 import uet.oop.bomberman.entities.movingObject.enemy.*;
-import uet.oop.bomberman.entities.tile.Brick;
-import uet.oop.bomberman.entities.tile.ItemBrick;
-import uet.oop.bomberman.entities.tile.Portal;
-import uet.oop.bomberman.entities.tile.Wall;
+import uet.oop.bomberman.entities.tile.*;
 import uet.oop.bomberman.sounds.Sound;
 
 import java.io.File;
@@ -169,9 +166,8 @@ public class Map {
             int x = random.nextInt(WIDTH);
             int y = random.nextInt(HEIGHT);
             if(!cellUsed[x][y]) {
-
-                game.setPortal(new Portal(x, y,game));
-                brick.add(new Brick(x, y));
+                game.setPortal(null);
+                game.getBrick().add(new PortalBrick(x,y,game));
                 cellUsed[x][y] = true;
                 break;
             }

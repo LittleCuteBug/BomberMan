@@ -4,25 +4,15 @@ import javafx.scene.canvas.GraphicsContext;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.bomb.Bomb;
 import uet.oop.bomberman.entities.bomb.Flame;
-import uet.oop.bomberman.entities.item.BombItem;
-import uet.oop.bomberman.entities.item.FlameItem;
 import uet.oop.bomberman.entities.item.Item;
-import uet.oop.bomberman.entities.item.SpeedItem;
-import uet.oop.bomberman.entities.movingObject.enemy.Balloom;
 import uet.oop.bomberman.entities.movingObject.Bomber;
 import uet.oop.bomberman.entities.movingObject.MovingEntity;
-import uet.oop.bomberman.entities.movingObject.enemy.Oneal;
-import uet.oop.bomberman.entities.tile.Brick;
 import uet.oop.bomberman.entities.tile.Portal;
-import uet.oop.bomberman.entities.tile.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.graphics.ViewPoint;
 import uet.oop.bomberman.sounds.Sound;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
 
@@ -151,7 +141,8 @@ public class Game {
         //wall.forEach(Entity::update);
         brick.forEach(Entity::update);
         item.forEach(Entity::update);
-        portal.update();
+        if(portal!=null)
+            portal.update();
         bomber.update();
         enemy.forEach(Entity::update);
         bomb.forEach(Entity::update);
@@ -168,7 +159,8 @@ public class Game {
     public void render(GraphicsContext gc) {
         wall.forEach(g -> g.render(gc));
         item.forEach(g -> g.render(gc));
-        portal.render(gc);
+        if(portal!=null)
+            portal.render(gc);
         brick.forEach(g -> g.render(gc));
         flame.forEach(g -> g.render(gc));
         bomb.forEach(g->g.render(gc));
