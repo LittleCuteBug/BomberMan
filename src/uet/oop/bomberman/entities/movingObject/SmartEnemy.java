@@ -63,9 +63,13 @@ public abstract class SmartEnemy extends Enemy{
     @Override
     protected void updateAction() {
         Direction _direction = smartMove();
+        if(_direction != null)
+            timeBetweenMove -= 20;
         if(!move(_direction)) {
             super.updateAction();
         }
+        if(_direction != null)
+            timeBetweenMove += 20;
     }
 
 }

@@ -24,7 +24,7 @@ public class Pass extends Enemy {
     protected void updateAction() {
         super.updateAction();
         Random random = new Random();
-        if(random.nextDouble()<0.005) {
+        if(random.nextDouble()<0.01) {
             placeBomb();
         }
     }
