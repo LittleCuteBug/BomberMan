@@ -1,4 +1,5 @@
-/target
+target/*
+!target/bomberman.jar
 /bin
 /.idea
 *.iml
