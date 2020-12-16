@@ -33,15 +33,19 @@ Các *Item* cũng được giấu phía sau ItemBrick và chỉ hiện ra khi It
 - ![](res/sprites/powerup_flamepass.png) *FlamePassItem* Khi sử dụng Item này, Bomber có thể đi xuyên qua các đối tượng *Flame*, điều này giúp Bomber có thể tránh bị kẹt nhưng không giúp Bomber bất tử trước Flame. FlamePassItem cũng bắt đầu xuất hiện từ màn 4.
 - ![](res/sprites/powerup_wallpass.png) *WallPassItem* Khi sử dụng Item này, Bomber có thể đi xuyên các đối tượng Brick (nhưng không thể ăn được Item ẩn dưới Item Brick). WallPassItem cũng bắt đầu xuất hiện từ màn 4.
 
-Có nhiều loại *Enemy* trong Bomberman. Thông tin của các Enemy được liệt kê dưới đây (chú ý là những tính năng không được nêu ra được mặc định là không có, ngoại trừ tính năng mặc định là giết Bomber khi va chạm với Bomber:
+Có nhiều loại *Enemy* trong Bomberman. Thông tin của các Enemy được liệt kê dưới đây:
+
+<img src="report/Enemy.png" alt="drawing" width="900"/>
+
+Cụ thể:
 - ![](res/sprites/balloom_left1.png) *Balloom* là Enemy đơn giản nhất, di chuyển ngẫu nhiên với vận tốc cố định. Balloom bắt đầu xuất hiện từ màn 1.
-- ![](res/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển nhanh hơn Balloom, có thể đuổi theo Bomber nếu có đường đi độ dài 5 từ chính nó đến Bomber. Oneal bắt đầu xuất hiện từ màn 2.
-- ![](res/sprites/doll_left1.png) *Doll* có tốc độ di chuyển ngang Oneal, có thể đặt bomb (tối đa 2), độ dài bomb (flame) là 2. Doll bắt đầu xuất hiện từ màn 3.
-- ![](res/sprites/minvo_left1.png) *Minvo* có tốc độ di chuyển chậm nhất, có thể đi xuyên qua Bomb, có thể đặt bomb (tối đa 2), flame = 2, có thể đuổi theo Bomber nếu có đường đi độ dài 3 từ chính nó đến Bomber. Minvo bắt đầu xuất hiện từ màn 4.
-- ![](res/sprites/kondoria_left1.png) *Kondoria* có tốc độ di chuyển chậm hơn Balloom nhưng nhanh hơn Minvo, có thể đi xuyên Brick. Kondoria bắt đầu xuất hiện từ màn 5.
-- ![](res/sprites/ovapi.png) *Ovapi* có tốc độ nhanh bằng Oneal, có thể đi xuyên Brick, có thể đuổi theo Bomber nếu có đường đi độ dài 4 từ chính nó đến Bomber. Ovapi bắt đầu xuất hiện từ màn 6.
-- ![](res/sprites/pass.png) *Pass* có tốc độ ngang Minvo, có thể đi xuyên Brick và Bomb, có thể đặt bomb (tối đa 2), flame = 1. Pass bắt đầu xuất hiện từ màn 7.
-- ![](res/sprites/pontan.png) *Pontan* có tốc độ ngang Oneal, có thể đi xuyên Brick và Bomb, có thể đặt bomb (tối đa 2), flame = 2, có thể đuổi theo Bomber nếu có đường đi độ dài 4 từ chính nó đến Bomber. Pontan bắt đầu xuất hiện từ màn 8.
+- ![](res/sprites/oneal_left1.png) *Oneal* có tốc độ di chuyển nhanh nhất và biết đuổi theo Bomber. Oneal bắt đầu xuất hiện từ màn 2.
+- ![](res/sprites/doll_left1.png) *Doll* có tốc độ di chuyển ngang Oneal, có thể đặt bomb. Doll bắt đầu xuất hiện từ màn 3.
+- ![](res/sprites/minvo_left1.png) *Minvo* có tốc độ di chuyển chậm nhất, có thể đặt bomb, có thể đuổi theo Bomber. Minvo bắt đầu xuất hiện từ màn 4.
+- ![](res/sprites/kondoria_left1.png) *Kondoria* có tốc độ di chuyển trung bình, có thể đi xuyên Brick. Kondoria bắt đầu xuất hiện từ màn 5.
+- ![](res/sprites/ovapi.png) *Ovapi* có tốc độ nhanh bằng Oneal, có thể đi xuyên Brick, có thể đuổi theo Bomber. Ovapi bắt đầu xuất hiện từ màn 6.
+- ![](res/sprites/pass.png) *Pass* có tốc độ ngang Minvo, có thể đi xuyên Brick, có thể đặt bomb. Pass bắt đầu xuất hiện từ màn 7.
+- ![](res/sprites/pontan.png) *Pontan* có tốc độ ngang Oneal, có thể đi xuyên Brick, có thể đặt bomb, có thể đuổi theo Bomber. Pontan bắt đầu xuất hiện từ màn 8.
 
 ## 4. Mô tả game play, xử lý va chạm và xử lý bom nổ
 - Trong một màn chơi, Bomber sẽ được người chơi di chuyển, đặt và kích hoạt Bomb với mục tiêu chính là tiêu diệt tất cả Enemy và di chuyển đến Portal để có thể qua màn mới.
@@ -75,4 +79,4 @@ Có nhiều loại *Enemy* trong Bomberman. Thông tin của các Enemy được
 5. Những ý tưởng khác:
    * Tự động sinh bản đồ mới.
    * Cho các SmartEnemy có khả năng đặt bom và/hoặc di chuyển nhanh hơn khi ở gần Enemy.
-   * Thuật toán tìm đường cho Enemy di chuyển đến Bomber.
+   * Thuật toán BFS tìm đường cho Enemy di chuyển đến Bomber.
